@@ -1,0 +1,1400 @@
+\documentclass[fontsize=4pt]{scrartcl}
+\usepackage{lmodern}
+
+%\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage[margin=0.25in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+%\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{ amssymb }
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{color,soul}
+\usepackage{siunitx}					% Scientific Notation
+\usepackage{braket}					% braket package to generate bra and ket vectors
+\usepackage{physics}				% useful for physics
+
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+
+\title{Electrodynamics}
+\author{Joseph Crandall}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+
+
+\colorbox{YellowGreen}{Joe Crandall's PHYS 3167 Principles of Quantum Physics}
+\colorbox{Thistle}{Used Heavily}
+\colorbox{Cyan}{Topic}
+\colorbox{Orange}{SubTopic}
+\colorbox{Aquamarine}{KNOWTHISMATH}
+\colorbox{RubineRed}{Definition/Constant}
+\colorbox{LimeGreen}{Question}
+\colorbox{Yellow}{break}
+%s
+my name is slim shady
+\colorbox{RubineRed}{Important Quantum Concepts}
+$h = \SI{6.626e-34}{\joule \second} $
+\hl{I}
+$\hbar = \SI{1.054e-34}{\joule \second} $
+\hl{I}
+$\hbar \equiv \frac{h}{2\pi}$
+
+\colorbox{Cyan}{2 Classical Waves}
+\colorbox{Orange}{Classical Wave Equation: boundary conditions}
+head on collision of two identical waves traveling in opposite directions:
+$f(x,t) = A\sin(kx - \omega t) + A\sin (kx + \omega t) = 2 A\sin (kx) \cos( \omega t)$
+boundary conditions lead to discrete spectrum
+$k_n = \frac{n\pi}{L}$ for $n = 1,2,3 ...$
+\colorbox{Orange}{Classical Wave Equation: uncertainty principle}
+$f(x,t) = A\cos(k_1x - \omega t) + A\sin (k_2x + \omega t) = 2 A\cos [\frac{(k_1 + k_2)x}{2}] \cos[ \frac{(k_1 - k_2)x}{2}]$
+\hl{I}
+If $k_1$ and $k_2$ are close, 'beat' happens: $f(x,t) = 2Acos(kx - \omega t)cos(\Delta k x)$, $k=\frac{k_1+k_2}{2}$, $\Delta k = \frac{k_1 - k_2}{2}$, at locations: $x = \frac{(2n+1)\pi}{2\Delta k}$, $\Delta x\Delta k = \pi \geq O(1)$ the degree of localization of a wave packet in space $(\Delta X)$ is inversely correlated with the spread in available k values $(\delta k)$
+\colorbox{Orange}{Fourier transform}
+A general function f(x) can be expanded in a continuous integral:
+$f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}A(k)e^{ikx}dk$
+\hl{I}
+The "inverse Fourier transform" can be obtained:
+$A(k) = \frac{1}{\sqrt{2\pi}}\int_{\infty}^{\infty}f(x)e^{-ikx}dx$
+\hl{I}
+using the Dirac $\delta$-function:
+$\delta(k-k^{\prime})=\frac{1}{2\pi}\int_{-\infty}^{+\infty}e^{i(k-k^{\prime})x}dx = \text{ either } 0 \text{ for } k \neq k^{\prime} \text{ or } \infty \text { for } k=k^{\prime}$ 
+\colorbox{Orange}{Dispersion relation}
+example: EM wave in plasma: $\omega^2 = (kc)^2 + \omega_p^2$ The need for two velocities, Phase velocity $v_{\phi} = \frac{\omega}{k}$, group velocity $v_p = \frac{d \omega}{d k}$
+\colorbox{Orange}{Dirac delta function}
+$\delta(k-k^{\prime}) = \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i(k-k^{\prime})x}dx = \text{ either } 0 \text{ for } k\neq k^{\prime} \text{or} \infty \text{for} k=k^{\prime}$ 
+\hl{I}
+$\int_{\infty}^{\infty} \delta (k-k^{\prime})dk = 1$
+$\delta_{\epsilon}(k) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-\epsilon x^2}e^{i(k-k^{\prime})x}dx = \frac{1}{2\pi}\sqrt{\frac{\pi}{\epsilon}}e^{-\frac{k^2}{4\epsilon}}$
+\colorbox{Orange}{The Schrodinger Equation}
+\textbf{Free particle}: operator equation $\hat{E}\psi(x,t) = \frac{\hat{p}}{2m}\psi(x,t)$, $\hat{E}=i\hbar \frac{\partial}{\partial t}$, $\hat{p} = -i\hbar \frac{\partial}{\partial x}$, $i\hbar \frac{\partial \psi(x,t)}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2 \psi (x,t)}{\partial x^2}$
+\hl{I}
+\textbf{Forced particle}: operator equation $\hat{E}\psi (x,t) = [\frac{\hat{p}^2}{2m}+V(x)]\psi(x,t) \rightarrow i\hbar \frac{\partial \psi (x,t)}{\partial t} = [-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x)]\psi(x,t)$
+\colorbox{Orange}{Free particle: plane - wave solution}
+$i\hbar \frac{\partial \psi(x,t)}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2 \psi (x,t)}{\partial x^2}$
+\hl{I} 
+$\psi(x,t) = Ae^{i(px - Et)/\hbar}$
+\hl{I}
+$e^{i(kx-\omega t)}$, $p=\hbar k$, $E = \hbar \omega$
+Quantum mechanically, plane - wave solution has well defined momentum p and energy E, but the particle is everywhere at the same time
+\colorbox{Orange}{Free particle: wave - packet solution}
+$\psi(x,t) = \frac{1}{\sqrt{2\pi \hbar}} \int_{\infty}^{\infty} \phi (p) e^{i(px - \frac{p^2}{2m\hbar}t)/\hbar}dp = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty}\phi(p,t)e^{ipx/\hbar} dp$, where $\phi (p,t) = \phi (p) e^{-i\frac{p^2}{2m\hbar}t}$
+\hl{I}
+$\phi(p,0) = \phi(p) = \frac{1}{\sqrt{2 \pi \hbar}}\int_{-\infty}^{\infty}\psi (x,0) e^{-ipx / \hbar} dx$
+\colorbox{LimeGreen}{given initial wave - packet $\psi(x,0)$ find $\psi(x,t)$}
+1. find initial momentum-space wave packet $\phi(p)$ via inverse Fourier transform
+2. find $\phi(p,t)$ via $\phi(p,t) = \phi(p)e^{-i\frac{p^2}{2m\hbar}t}$
+3. find $\psi(x,t)$ by Fourier transform
+\colorbox{Orange}{Free particle: Gaussian wave packet}
+A free particle is initially located at $x_0$ and with momentum $p_0$. It can be modeled by a wave packet:
+$\psi(x,0)=\frac{1}{\sqrt{\alpha \hbar \sqrt{\pi}}}e^{-\frac{(x-x_0)^2}{2\alpha^2 \hbar^2}}e^{ip_0 (x-x_0)/\hbar}$
+\colorbox{LimeGreen}{how will it evolve in time $\phi(x,t) = ?$}
+1. find its initial momentum - space wave packet via Fourier transform
+$\phi(p) = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty}\psi(x,0)e^{-ipx/\hbar}dx = \sqrt{\frac{\alpha}{\sqrt{\pi}}}e^{-\frac{\alpha^2(p-p_0)^2}{2}}e^{-ipx_0 / \hbar}$
+2. find $\phi(p,t)$
+$\phi(p,t) = \phi(p)e^{-i\frac{p^2}{2m\hbar}t} = \sqrt{\frac{\alpha}{\sqrt{\pi}}}e^{-\frac{\alpha^2(p-p_0)^2}{2}} e^{-i[px_0 + \frac{p^2}{2m}t]/ \hbar}$
+3. find $\phi(x,t)$,
+$\psi(x,t) = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty}\phi(p,t)e^{ipx/\hbar}dp = \frac{1}{\sqrt{\alpha \hbar F \sqrt{\pi}}}e^{-\frac{(x-x_0-\frac{p_0 t}{m})^2}{2\alpha^2 \hbar^2 F}} e^{-i [p_0(x-x_0) - \frac{p_0^2}{2m}t)]/\hbar}$ where $F = 1 + i\frac{t}{t_0}$ with $ t_0 = m\hbar \alpha^2$
+\hl{I}
+$|\psi(x,t)|^2 = \frac{1}{\beta_t \sqrt{\pi}}e^{-\frac{(x-x_0 - \frac{p_0 t}{m})^2}{\beta_t^2}}$ with $ \beta_t = \alpha \hbar \sqrt{1+\frac{t^2}{t^2_0}}$
+\colorbox{Orange}{2.4 Inverting the Fourier transform: the Dirac $\delta$-function}
+$f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}A(k)e^{ikx}dk$
+\hl{I}
+$A(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}A(k)e^{-ikx}dk$
+\hl{I}
+Dirac $\delta$-function $\delta(k - k^{\prime}) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i (k - k^{\prime}) x} dx$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{4 Interpreting the Schrodinger Equation}
+\colorbox{Orange}{Wavefunction $\psi(x,t)$}
+$i\hbar \frac{\partial \psi (x,t)}{\partial} = [-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + V(x,t)] \psi(x,t)$
+\hl{I}
+Probability density:$ P(x,t) = |\psi(x,t)|^2$: although contact with reality is made through the modulus square $|\psi(x,t)|^2$, the original complex wavefunction $\psi(x,t)$ contains all the information about the particle, more so than $|\psi(x,t)|^2$, in EM, the energy density stored in the electric and magnetic fields is 
+$u = \frac{\epsilon_0}{2}|\vec{E}(\vec{r},t)|^2 + \frac{1}{2\mu_0}|\vec{B}(\vec{r},t)|^2$, E and B are real functions. They have direct consequence on the charge via the Lorentz force: $F = q\vec{E} + q\vec{v} \times \vec{B}$
+\colorbox{Orange}{Normalization}
+$|\psi(x,t)|^2 dx = 1$
+\textbf{is the normalization condition time dependent?}
+$\frac{d}{dt}[\int_{-\infty}^{\infty}|\psi(x,t)|^2 dx] \rightarrow 0$
+\hl{I}
+$\frac{\partial P(x,t)}{\partial t} = \frac{\partial |\psi(x,t)|^2}{\partial t} = \frac{\partial \psi^{*}(x,t)}{\partial t}\psi(x,t) + \frac{\partial \psi(x,t)}{\partial t}\psi^{*}(x,t)$
+\hl{I}
+$i\hbar \frac{\partial \psi (x,t)}{\partial t} = [-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + V(x,t)] \psi(x,t)$
+\hl{I}
+$i\hbar \frac{\partial \psi^{*} (x,t)}{\partial t} = [-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + V^{*}(x,t)] \psi^{*}(x,t)$
+\hl{I}
+$\frac{\partial P (x,t)}{\partial t} = \frac{i\hbar}{2m}( \frac{\partial^2 \psi^{*}}{\partial x^2}\psi -  \frac{\partial^2 \psi}{\partial x^2}\psi^{*}) + \frac{i}{\hbar}(\psi^{*}\psi)(V^{*} - V)$
+\hl{I}
+Assuming the potential is real: $\frac{\partial P(x,t)}{\partial t} = -\frac{\partial j(x,t)}{\partial x}$ (continuity equation) where $j(x,t) = \frac{i\hbar}{2m}(\psi \frac{\partial \psi^2}{\partial x} - \frac{\partial \psi}{\partial x}\psi^2)$ (probability flux) Its a probability conservation
+\hl{I}
+$\int_{-\infty}^{\infty} \frac{\partial P(x,t)}{\partial t}dx = \int_{-\infty}^{\infty}[-\frac{\partial j (x,t)}{\partial x}]dx$
+\hl{I}
+$\frac{d}{dt}[\int_{-\infty}^{\infty} |\psi(x,t)|^2 dx] = - j(\infty,t) + j(-\infty,t) \rightarrow 0$ Normalization is preserved at all times by the Schrodinger equation
+\colorbox{Orange}{Expectation value of position}
+$\langle x \rangle = \int_{\infty}^{\infty} x |\psi(x,t)|^2 dx$
+\hl{I}
+$\langle f(x) \rangle = \int_{-\infty}^{\infty} f(x) |\psi(x,t)|^2 dx$
+\hl{I}
+Example: the uncertainty in position for Gaussian wave-packet: 
+$|\psi(x,t)|^2 = \frac{1}{\beta_t \sqrt{\pi}}e^{-(x-x_0-\frac{p_0 t}{m})^2/\beta_t^2}$ where $\beta_t = \alpha \hbar \sqrt{1+t^2 /t_0^2}$
+\hl{I}
+$\langle x \rangle x_0 + \frac{p_0 t}{m}$
+\hl{I}
+$\langle x^2 \rangle = (x_0 + \frac{p_0 t}{m})^2 + \frac{\beta_t^2}{2}$
+\hl{I}
+$\Delta x = \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = \frac{\beta_t}{\sqrt{2}}$
+\colorbox{Orange}{Expectation value of momentum}
+$\hat{p} \equiv -i\hbar \frac{\partial}{\partial x}$
+\hl{I}
+$\langle \hat{p} \rangle = \int_{-\infty}^{\infty} \psi^* (x,t) \hat{p}\psi(x,t)dx$
+\hl{I}
+classically, the trajectory would satisfy $\frac{dx(t)}{dt} = \frac{p(t)}{m}$
+This suggests 
+$\frac{d}{dt}\langle x \rangle = \frac{d}{dt}[\int_{-\infty}^{+\infty} x |\psi(x,t)|^2 dx ] = - \int_{-\infty}^{\infty} x \frac{\partial j(x,t)}{\partial x} dx = -[xj(x,t)]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} j(x,t) dx = \frac{i\hbar}{2m} \int_{\infty}^{\infty} (\phi \frac{\partial \psi^*}{\partial x} - \frac{\partial \psi}{\partial x} \psi^* )dx = \frac{1}{m}\int_{-\infty}^{\infty}\psi^*(-i\hbar \frac{\partial}{\partial x}) \psi dx + \frac{i \hbar}{2m} [\psi \psi^*]_{-\infty}^{\infty} = \frac{\langle \hat{p} \rangle}{m}$
+\hl{I}
+$\langle \hat{p} \rangle = \int_{-\infty}^{\infty} \psi^*(x,t) (-i\hbar \frac{\partial}{\partial}) \psi (x,t) dx$
+\hl{I}
+$\langle \hat{p}^n \rangle = \int_{-\infty}^{\infty} \psi^*(x,t) (-i\hbar \frac{\partial}{\partial})^n \psi (x,t) dx$
+\hl{I}
+example: the uncertainty in momentum for the free-particle Gaussian wave-packet
+$\langle \hat{p} \rangle = p_0$, $\langle \hat{p}^2 \rangle = p_0^2 + \frac{1}{2\alpha^2}$, $\Delta p = \sqrt{\langle \hat{p}^2 \rangle - \langle \hat{p} \langle^2}
+= \frac{a}{\sqrt{2}\alpha}$
+\hl{I}
+Uncertainty principle relation for the Gaussian wave-packet
+$\Delta x \Delta p = \frac{\hbar}{2}\sqrt{1+\frac{t^2}{t_0^2}}$
+\colorbox{Orange}{Expectation value of energy}
+example: the expectation value of energy for the free-particle Gaussian wave-packet
+$\langle \hat{E} \rangle = \int_{-\infty}^{\infty} \psi^*(x,t)(i\hbar \frac{\partial}{\partial t}) \psi(x,t) dx = \frac{1}{2m}(p_0^2 + \frac{1}{2\alpha^2}) = \frac{\langle \hat{p}^2 \rangle}{2m}$
+\colorbox{Orange}{Expectation value of kinetic energy}
+$\hat{T} = \frac{\hat{p}^2}{2m} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}$
+\hl{I}
+$\langle \hat{T} \rangle = \int_{-\infty}^{\infty} \psi^* (x,t)\frac{\hat{p}}{2m}\psi(x,t)dx = \frac{-\hbar^2}{2m} \int_{-\infty}^{\infty} \psi^* (x,t) \frac{\partial^2 \psi(x,t)}{\partial x^2}dx = \frac{-\hbar^2}{2m}(\psi^*(x,t)\frac{\partial \psi(x,t)}{\partial x})_{-\infty}^{\infty} + \frac{\hbar^2}{2m} \int_{-\infty}^{\infty}\frac{\partial \psi^*(x,t)}{\partial x}\frac{\partial \psi (x,t)}{\partial x}dx =\frac{\hbar^2}{2m} \int_{-\infty}^{\infty} |\frac{\partial \psi (x,t)}{\partial x}|^2 dx$
+\colorbox{Orange}{Physical interpretation of $\phi(p,t)$}
+$\psi(x,t) = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty} \phi(p,t)e^{ipx/\hbar} dp$ 
+\hl{I}
+$\psi(p,t) = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty} \psi(x,t)e^{-ipx/\hbar} dx$ 
+\hl{I}
+$| \psi(x,t)|^2 dx $ is the probability that a measurement of the position of the particle described by $\psi(x,t)$, at time t, will find it in the region (x,x+dx)
+\hl{I}
+$| \phi(p,t)|^2 dx $ is the probability that a measurement of the position of the particle described by $\psi(p,t)$, at time t, will find it in the region (p,p+dp)
+\colorbox{Orange}{Expectation value of momentum in momentum space}
+$\langle \hat{p} \rangle = \int_{-\infty}^{\infty} \phi^* (x,t)(-i\hbar \frac{\partial}{\partial x})\psi(x,t) dx = ... =  \int_{-\infty}^{\infty} p |\phi(p,t)|^2 dp = \langle p \rangle$
+\colorbox{Orange}{Expectation value of position in momentum space}
+$\langle x \rangle = \int_{-\infty}^{\infty} \phi^* (x,t) x \psi(x,t) dx = ... =  \int_{-\infty}^{\infty} \phi^*(p,t) ((-i\hbar \frac{\partial}{\partial p})) \phi(p,t) dp$
+\hl{I}
+$\hat{x} = i\hbar \frac{\partial}{\partial p}$
+\colorbox{Orange}{Schrodinger equation in momentum space}
+Position space:
+$i\hbar \frac{\partial \psi (x,t)}{\partial t} = [\frac{\hat{p}}{2m}+V(x,t)]\psi(x.t)$, $\hat{p} = -i\hbar \frac{\partial}{\partial x}$
+\hl{I}
+Momentum space: 
+$i\hbar \frac{\partial \phi (x,t)}{\partial t} = [\frac{p^2}{2m}+V(\hat{x},t)]\phi(x.t)$, $\hat{x} = i\hbar \frac{\partial}{\partial p}$
+\colorbox{Orange}{example: free particle}
+zero force, or potential V(x) = 0
+$\phi(p,t) = \phi(p,0) e^{\frac{ip^2}{2m\hbar}t}$
+\colorbox{Orange}{4.4 Real Average Values and Hermitian Operators}
+the momentum and energy operators $\hat{p} = \frac{\hbar}{i}\frac{\partial}{\partial x} \text{ and } \hat{E} = i\hbar \frac{\partial}{\partial t}$
+\hl{I}
+hermitian operators satisfy $\langle \hat{O} \rangle = \langle \hat{O}\rangle^{*}  \text{ or } \int_{-\infty}^{\infty} dx \psi^* (x,t) \hat{O} \psi (x,t) = [\int_{-\infty}^{\infty} dx \psi^* (x,t) \hat{O} \psi (x,t)]^* $
+\colorbox{Orange}{4.5 the physical interpretation of $\psi(p)$}
+position operator
+$\hat{x} = i \hbar \frac{\partial}{\partial p}$ 
+\colorbox{Orange}{4.6 Energy Eigenstates, Stationary States, and the Hamiltonian Operator}
+In much the same way that Newtons second law relates the time dependence of a particles trajectory to the external force, the time dependent Shrodinger equation dictates the time development of the wavefunction of a particle in the presence of an external potential.
+$i\hbar \frac{\partial}{\partial t}\psi(x,t) = -\frac{\hbar^2}{2m}\frac{\partial^2 \psi(x,t)}{\partial x^2} + V(x,t) \psi(x,t)$
+\hl{I}
+Hamiltonian operator $\hat{H} \equiv -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x) = \frac{\hat{p}}{2m} + V(x)$
+\colorbox{Orange}{4.7 The Schrodinger Equation in Momentum Space}
+$-\frac{\hbar^2}{2m}\frac{\partial^2 \psi(x,t)}{\partial x^2} + V(x)\psi(x,t) = i\hbar \frac{\partial \psi (x,t)}{\partial t}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{5 The Infinite Well: Physical Aspects}
+\colorbox{Orange}{Energy Eigenstates and stationary states}
+$i\hbar\frac{\partial \psi (x,t)}{\partial} = \hat{H}\psi (x,t)$ where $ \hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x,t)$
+If the potential is independent of time V(x,t) = v(x) we can try a solution by separation of variables:
+$\psi(x,t) = \psi(x) T(t)$
+\hl{I}
+$i\hbar \frac{dT(t)}{T(t) dt}=\frac{\hat{H}\psi(x)}{\psi(x)} = E (constant)$
+\hl{I}
+$i\hbar \frac{dT(t)}{T(t) dt} = E$
+\hl{I}
+$\hat{H}\psi_E(x) = E\psi_E(x)$
+\hl{I}
+$T(t) = e^{-iEt / \hbar}$
+\hl{I}
+$\psi(x,t) = \psi_E(x) e^{-iEt\hbar}$
+\hl{I}
+\textbf{instead of solving}
+$i\hbar \frac{\partial \psi(x,t)}{\partial t} = \hat{H} \psi(x,t)$
+\hl{I}
+$\hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x)$
+\textbf{solve eigenvalue problem first}
+$\hat{H} \psi_E(x) = E\psi_e(x)$ the the final solution is $\psi(x,t) = \psi_E (x) e^{-iEt/\hbar}$
+1. Energy eigenstate = energy eigenvalue E and eigenfunction $\psi_E(x)$.
+$\hat{E}\psi(x,t) = (i\hbar \frac{\partial}{\partial t})\psi (x,t) = E\psi(x,t)$
+\hl{I}
+$\langle \hat{E} \rangle = \int_{-\infty}^{\infty}\psi^*(x,t)(i\hbar \frac{\partial}{\partial t})\psi(x,t) dx = E$
+\hl{I}
+$\langle \hat{E}^2 \rangle = \int_{-\infty}^{\infty}\psi^*(x,t)(i\hbar \frac{\partial}{\partial t})^2\psi(x,t) dx = E^2$
+\hl{I}
+$\Delta E = \sqrt{\langle \hat{E^2} \rangle - \langle \hat{E} \rangle^2 } = 0$
+2. Probability density is independent of time for eigenstates.
+$P(x,t) = |\psi(x,t)|^2 = |\psi_E(x)|^2$
+3. Expectation value of operators in such states is also independent of time
+$\langle \hat{O} \rangle = \int_{-\infty}^{\infty} \psi^* (x,t) \hat{O}\psi(x,t) dx = \int_{-\infty}^{\infty} \psi_E^* (x) \hat{O} \psi_E(x)dx$
+for these reasons, energy eigenstates are called stationary states
+4. a general quantum state can be expressed as a linear combination of energy eigenstates (principle of superposition)
+$\psi(x,t) = \sum_E a_E \psi_E (x)e^{-iEt/\hbar}$
+\hl{I}
+$P|\psi(x,t)|^2$ is no longer time independent due to cross-term interference.
+\colorbox{Orange}{Example: free particle V(x)=0}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}]\psi_E(x) =  E\psi_E (x)$
+\hl{I}
+$\frac{d^2 \psi_E(x)}{dx^2} = -k^2 \psi_E (x) \text{ where } k = \sqrt{\frac{2mE}{\hbar^2}}$
+\hl{I}
+$\psi_E(x) = e^{ikx} \text{ or } e^{-ikx}$
+\hl{I}
+$E = \frac{\hbar^2 k^2}{2m} = \frac{p^2}{2m}$s
+\hl{I}
+Stationary states (plane waves):
+$\psi(x,t) = \psi_E (x) e^{-iEt/\hbar} = e^{i(px-Et)/\hbar} \text{(traveling +x direction) or } = e^{i(-px-Et)/\hbar} \text{(traveling -x direction)}$
+\colorbox{Orange}{The infinite well: classically}
+$m\frac{d^2 x(t)}{dt^2} = -\frac{\partial V(x,t)}{\partial x}$, $V(x) = 0 \text{ for } 0,x,L \text{ or } \infty \text{ for } x<0 \text { or } x > L$
+\hl{I} Constant Energy E, or speed $v_0 = sqrt{2E/m}$, or momentum $p_0 = mv_0 = \sqrt{2mE}$, elastic collisions with the walls, periodic motion $\tau = 2L/v_0$
+\colorbox{Orange}{The infinite well: classical probabilities}
+\textbf{Position space: }
+$P_{CL}(x)dx = \frac{d\tau}{\tau / 2} = \frac{2}{\tau v}dx \rightarrow P_{CL}(x) = \frac{2}{\tau v} = \frac{1}{L}$
+\hl{I}
+$\langle x \rangle = \int_{0}^{L} x P_{CL}(x)dx = \frac{L}{2}$, $\langle x \rangle^2 = \int_{0}^{L} x^2 P_{CL}(x)dx = \frac{L^2}{3}$, $\Delta x = \sqrt{\langle x^2 \rangle -\langle x \rangle^2} = \frac{L}{\sqrt{12}} = 0.29 L$ 
+\textbf{Momentum space: }
+$P_{Cl}(p) = \frac{1}{2}[\delta(p-p_0)+\delta(p+p_0)]$, $ \langle p \rangle = \int_{-\infty}^{\infty} p P_{Cl}(p)dp = \frac{1}{2}[p_0 + (-p_0)] = 0$, $ \langle p^2 \rangle = \int_{-\infty}^{\infty} p^2 P_{Cl}(p)dp = \frac{1}{2}[p_0^2 + (-p_0)^2] = p_0^2$, $\Delta p = \sqrt{\langle p^2 \rangle - \langle p \rangle^2} = p_0$
+\hl{I}
+"Classical uncertainty relation": $\Delta x \Delta p = \frac{L}{\sqrt{12}}p_0$ can be made to vanish $(p_0 = mv_0 = 0)$
+\colorbox{Orange}{The infinite well: quantum solution}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)]\psi_E(x) = E\psi_E(x)$
+\hl{I}
+$\psi(x,t) = \psi_{E} (x) e^{-iEt/\hbar}$
+\hl{I}
+$V(x) = \text{ either } 0 \text {for} 0 < x < L \text{ or } \infty \text{ for } x < 0 \text{ or } x > L$
+\hl{I}
+\textbf{Inside:} $[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}]\psi_E  (x) = E\psi_E (x)$, $\frac{d^2 \psi_{E}(x)}{dx^2} = - k^2 \psi_E (x0 \text{ where } k = \sqrt{\frac{2mE}{\hbar^2}}$, $\psi_E(x) = A\sin(kx) + B\cos(kx)$
+\hl{I}
+\textbf{Outside:} $\psi_E(x) = 0$
+\hl{I}
+Matching $\psi_E(x) \text { at boundaries } x=0 \text{ and } x=L$, $A\sin(0) + B\cos(0) = 0$, $A\sin(kL) + B\cos(kL) = 0$
+\hl{I}
+Solution: $B=0 \text{ and } \sin(kL) = 0$
+\hl{I}
+$k_n = \frac{n\pi}{L} \text{ for } n = 1,2,3,...$, $E_n = \frac{(\hbar k_2)^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2mL^2}$, $\psi_n(x) = A\sin( \frac{n\pi x}{L})$
+\hl{I}
+Fix A by normalization: $|A|^2 \int_0^L \sin^2(\frac{n \pi x}{L})dx = 1$, $|A|^2 \frac{L}{2} = 1$, $\psi_n(x) = \sqrt{\frac{2}{L}}\sin(\frac{n\pi x}{L})$
+\colorbox{Orange}{Particle in a box: Classical vs. Quantum}
+$P_{CL} = \frac{1}{L}$, $P_{Q} = |\psi(x)|^2 = \frac{2}{L}\sin^2 (\frac{n\pi x}{L})$ (many oscillations average out to 1/L for quantum) Correspondence principle
+\colorbox{Orange}{The infinite well: expectation values}
+$E_n = \frac{n^2 \pi^2 \hbar^2}{2ma^2}$, $\psi_{n}(x) = \sqrt{\frac{2}{a}}\sin(\frac{n\pi x}{a})$, where $n=1,2,3,...$
+\hl{I}
+$\langle x \rangle  = \int_{0}^{a} x |\psi_n (x)|^2 dx = \frac{a}{2}$ (same as classical)
+\hl{I}
+$\langle x^2 \rangle  = \int_{0}^{a} x^2|\psi_n (x)|^2 dx = \frac{a^3}{3}(1-\frac{3}{s(\pi n)^2}) = [0.283a^2, 0.321a^2, ... , 0.333a^2]$ (agrees with classical for large n)
+\hl{I}
+$\Delta x = \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = \frac{a}{\sqrt{12}}\sqrt{1-\frac{6}{(n\pi)^2}} = [0.181a, 0.266a, ... 0.289a]$ (agrees with classical for large n)
+\hl{I}
+$\langle \hat{p} \rangle = \int_{-\infty}^{\infty} \psi_n^{*}(x)(-i\hbar\frac{\partial}{\partial x})\psi_n (x) dx = \frac{2}{a}(-i \hbar \frac{n\pi}{a} ) \int_0^a \sin(\frac{n\pi x }{a})\cos(\frac{n\pi x}{a}) dx = 0$ same as classical
+\hl{I}
+$\langle \hat{p}^2 \rangle = \frac{2 (-\hbar^2)}{a}(\frac{n\pi}{a})^2(-1) \int_0^a \sin^2(\frac{n\pi x }{a}) dx =(\frac{\hbar b \pi}{a})^2 = \hbar^2 k_n^2$  quantized
+\hl{I}
+Uncertainty principle relation: $\Delta x \Delta p = \frac{\hbar}{\sqrt{12}}\sqrt{(n\pi)^2 - 6} = [0.568 \hbar, 1.670 \hbar, 2.623 \hbar, ...]$, $\Delta x \Delta p \geq \hbar/2$ 
+\colorbox{Orange}{The infinite well: momentum space}
+$\phi(p) = \frac{1}{\sqrt{2\pi \hbar}}\int_{-\infty}^{\infty} \psi_n (x) e^{-ipx/ \hbar} dx$
+\hl{I}
+$\Delta p = \frac{2 \hbar}{a}$
+\hl{I}
+$\phi_n(p) = \frac{-i}{\sqrt{2 \pi \delta p}}e^{ip / \Delta p}\{e^{+in\pi/2}(\frac{\sin[(p_n - p)/\Delta p]}{(p_n - p)/\Delta p}) - e^{-i n \pi / 2}(\frac{\sin[(p_n + p)/\Delta p]}{(p_n + p)/\Delta p})\}$
+\hl{I}
+$|\phi_n(p)|^2 = \frac{\pi n^2 \hbar^3}{a^3}\frac{1-cos[(p-p_n)a/\hbar]}{(p^2 - p_n^2)^2}$
+\hl{I}
+$|\phi_n(-p)|^2 = |\phi_n(+p)|^2$
+\hl{I}
+$ \text{ In the limit  }\Delta p \rightarrow 0 ( \text{ either}  \hbar \rightarrow 0 \text{ or } a \rightarrow \infty)$ 
+\hl{I} 
+$P_{QM} = \lim_{\Delta p \rightarrow 0}|\phi_n(p)|^2 = \frac{1}{2}[\delta(p-p_0)+\delta(p+p_0)] = P_{Cl}$
+Results in momentum space are consistent wth classical expectations
+\colorbox{Orange}{Symmetric infinite well, emergence of even and odd solutions, parity}
+$V(x) = \text{ either } 0 \text{ for } |x|<a \text { or } \infty \text { for } |x| < a$,
+$\textbf{Inside:} \psi_E(x) = A\sin(kx) + B\cos(kx)$,
+$\textbf{Outside:} \psi_E(x) = 0$
+\hl{I}
+The only difference is boundary conditions:
+$A\sin(ka) + B\cos(ka) = 0$, $\text{ Solution: } A\sin(ka) = 0 \text{ and } B\cos(ka) = 0$,
+$A\sin(-ka) + B\cos(-ka) = 0$, $\text{ Two possibilites: } A = 0 \text{ or } B = 0 \text{ (Both A=B=0 is trivial}$,
+\hl{I}
+\textbf{Even solutions:} $A = 0 \text{ and } \cos(ka) = 0$,
+$k_{n}^{+} = \frac{(n-1/2)\pi}{a} \text { with } n = 1,2,3...$, $E_n^{+}  = \frac{(\hbar k_n)^2}{2m} = \frac{(2n-1)^2 \pi^2 \hbar^2}{8ma^2}$, $\psi_n^{+} = \frac{1}{\sqrt{a}}\cos (\frac{(n-1/2)\pi x}{a})$
+\hl{I}
+\textbf{Odd solutions:} $B = 0 \text{ and } \sin(ka) = 0$,
+$k_{n}^{-} = \frac{n\pi}{a} \text { with } n = 1,2,3...$, $E_n^{-}  = \frac{(\hbar k_n^{-})^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2}$, $\psi_n^{-} = \frac{1}{\sqrt{a}}\sin (\frac{n\pi x}{a})$
+\colorbox{Orange}{Standard infinite well}
+\textbf{Translation: a to 2a, and x to x-a}
+$k_{n} = \frac{n\pi}{a} \text { with } n = 1,2,3...$, $E_n  = \frac{(\hbar k_n)^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2}$, $\psi_n= \sqrt{\frac{2}{a}}\sin (\frac{n\pi x}{a})$
+\hl{I}
+$k_{n} = \frac{n\pi}{2a} \text { with } n = 1,2,3...$, $E_n  = \frac{(\hbar k_n)^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{8ma^2}$, $\psi_n= \sqrt{\frac{1}{a}}\sin (\frac{n\pi (x-a}{2a})$
+
+\colorbox{Orange}{Asymmetric infinite well}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)] \psi_{E}(x) = E\psi_{E}(x)$
+$V(x) =\text{ either } 0 \text { for } -L < x < 0 \text{ or } V_0 \text { for } 0<x<L \text{ or } \infty \text { for } |x| > L$
+\textbf{Left side $(-L < x <0)$:}
+$\frac{d^2 \psi_E (x)}{dx^2} = -k^2 \psi_E (x)\text{ where } k = \sqrt{\frac{2mE}{\hbar^2}}$
+$\psi_E(x) = A\sin(kx) + B\cos(kx)$
+\hl{I}
+Right side $(0<x<L)$, we have to consider two possibilities:
+$E > V_0 \text{ case: } \frac{d^2 \psi_E (x)}{dx^2} = -q^2 \psi_E (x) \text{ where } q = \sqrt{\frac{2m(E-V_0}{\hbar^2}}$,
+$\psi_E (x) = C\sin(qx) + D\cos(qx)$
+\hl{I}
+$0<E < V_0 \text{ case: } \frac{d^2 \psi_E (x)}{dx^2} = +q^2 \psi_E (x) \text{ where } q = \sqrt{\frac{2m(V_0-E}{\hbar^2}}$,
+$\psi_E (x) = C^{\prime}e^{+qx} + D^{\prime}e^{-qx}$
+\hl{I}
+$\textbf{ Outside (|x| > L):} \psi_E(x) = 0$
+\hl{I}
+$\text{ Matching} \psi_{\epsilon}(x) \text{ and } d\psi_E(x)/dx \text{ at the boundariues (x=-L, x = 0, x = L) leads to solutions, including the quantization of energy}$t
+\hl{I}
+Penetration of classically forbidden region, characterized by $d = \sqrt{\frac{\hbar^2}{2m(V_0 - E}}$
+\colorbox{Orange}{Two-state system in the symmetric infinite well (time dependence)}
+$\psi(x,t) = \frac{1}{\sqrt{2}}[\psi_1^+ (x) e^{-iE_1^+  t/\hbar} +\psi_1^- (x) e^{-iE_1^- t/\hbar} ]$
+\hl{I}
+$|\psi(x,t)|^2 = \frac{1}{2}[ |\psi_1^+ (x)|^2 + |\psi_1^- (x)|^2 + 2\psi_1^+(x)\psi_1^-(x)\cos(\frac{\Delta E t}{\hbar})$
+\hl{I}
+where $\Delta E = E_1^- - E_1^+$
+\hl{I}
+$\langle x \langle = \int_{-a}^{+a} x |\psi (x,t)|^2 dx = a(\frac{32}{9\pi^2})\cos(\frac{\Delta Et}{\hbar})$
+\hl{I}
+$\langle p \rangle = m\frac{d\langle x \rangle}{dt}$
+\hl{I}
+$\langle p \langle = \int_{-a}^{+a} \psi^*(x,t)(-u\hbar \frac{\partial}{\partial x}) \psi(x,t) dx = -(\frac{4\hbar}{3a})\sin(\frac{\Delta E t}{\hbar})$
+\hl{I}
+$j(x,t) = \frac{i\hbar}{2m}(\psi \frac{\partial \phi^*}{\partial x} - \frac{\partial \psi}{\partial x}\psi^*) = F_{2s}(x)\sin(\frac{\Delta E t}{\hbar})$
+\hl{I}
+$\phi(p,t) = \frac{1}{\sqrt{2}}[\phi_1^+ (p) e^{-iE_1^+ t/\hbar} +\phi_1^- (p) e^{-iE_1^- t/\hbar + }]$
+\hl{I}
+\colorbox{Orange}{Quantum revival in the standard infinite well}
+$T_{rev} = \frac{4mL^2}{\hbar \pi}$
+\hl{I}
+$\psi(x,t + T_{rev}) = \sum_{n=1}^{\infty} a_n u_n (x) e^{-iE_n (t+T_rev)/\hbar} =  \sum_{n=1}^{\infty} a_n u_n (x) e^{-iE_n t/\hbar }e^{-2\pi in^2} = \psi(x,t) ( \text{ because } e^{-2\pi in^2} = 1 \text{ for all } n  $
+\colorbox{Orange}{5.2 Stationary States for the Infinite Well}
+quantized energies $E_n = \frac{\hbar^2 k_n^2}{2m} = \frac{\hbar^2 n^2 \pi^2}{2ma^2}$ (standard infinite well)
+\hl{I}
+Stationary state wave functions written in the form $\psi(x) = u_n (x) $ must satisfy the normalization condition $1 = \int P_{QM}(x) dx = \int_{0}^{a} |u_n(x)|^2 dx = 1 $
+\hl{I}
+$u_n (x) = \sqrt{\frac{2}{a}}\sin(\frac{n\pi x}{a}) $ (standard infinite well)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{6 The Infinite Well: Formal Quantum Mechanics Aspects}
+\colorbox{Orange}{Dirac braket notation}
+$\langle \psi | \psi \rangle = \int_{-\infty}^{\infty} \psi^* (x,t) \psi(x,t)dx$
+\hl{I}
+$\angle \psi | \psi \rangle = 1$
+\hl{I}
+$\langle \psi_1 | \psi_2 \rangle = \int_{-\infty}^{\infty} \psi_1^* (x,t) \psi_2(x,t)dx$
+\hl{I}
+$\langle \psi_1 | \psi_2 \rangle^* = \langle \psi_2 | \psi_1 \rangle$
+\hl{I}
+$\langle \phi_1 | \phi_2 \rangle = \int_{-\infty}^{\infty} \phi_1^* (p,t) \phi_2(p,t)dp$
+\hl{I}
+$\langle \phi_1 | \phi_2 \rangle = \langle \psi_1 | \psi_2 \rangle$
+\hl{I}
+$\langle \hat{O} \rangle = \langle \psi | \hat{O} | \psi \rangle = \int_{-\infty}^{\infty} \psi^* (x,t) \hat{O} \psi(x,t)dt   $
+\colorbox{Orange}{Hermitian operator}
+$\langle \hat{O} \rangle = \langle \hat{O} \rangle^*$
+or
+$\langle \psi | \hat{O}|\psi \rangle = \langle \psi | \hat{O}|\psi \rangle^*$ In other words: operators whose expectation values are real
+or more generally: 
+$\langle \psi_1 | \hat{O} | \psi_2 \rangle^* = \langle \psi_2 | \hat{O} | \psi_1 \langle$
+Extension of the concepts of realness of numbers of numbers to operators  
+\colorbox{Orange}{Hermitian conjugation}
+$\langle \psi | \hat{O}^{\dag} | \psi \rangle \equiv \langle \hat{O} \psi | \psi \rangle$
+An operator is hermitian if it is equal to its hermitian conjugation:  $\hat{O}^{\dag} = \hat{O}$
+\hl{I}Proof $\langle \psi | \hat{O} | \psi \rangle = \langle \psi | \hat{O} \psi \rangle^* = \langle \hat{O} \psi | \psi \rangle = \langle \psi | \hat{O}^{\dag} | \psi \rangle = \langle \psi | \hat{O} | \psi \rangle$\hl{I}
+Extension of the concept of complex conjugation of numbers to operators
+\hl{I}
+Example 1: What is the Hermitian conjugation of a complex number c?
+$\langle \psi | c^{\dag} | \psi \langle = \int \psi^* c^{\dag} \psi dx = \int (c\psi)^* \psi dx = \int \psi^* c^* \psi dx = \langle \psi | c^* | \psi \rangle$
+Hermitian conjugation of complex numbers it its complex conjugation: $c^{\dag} = c^*$
+\hl{I}
+Example 2: What is the hermitian conjugation of the differential operator d/dx?
+$\int \psi^* (\frac{d}{dx})^{\dag} \psi dx \equiv \int (\frac{d}{dx}\psi)^* \psi dx = (\psi^* \psi)_{x=-\infty}^{x=+\infty} - \int \psi^* \frac{d\psi}{dx}dx = \int \psi^* (-\frac{d}{dx})\psi dx$
+\hl{I}
+$(\frac{d}{dx})^{\dag} = -\frac{d}{dx}$ 
+\hl{I}
+Properties $(\hat{O}^{\dag})^{\dag} = \hat{O}$, $f(\hat{O})^{\dag} = f(\hat{O}^{\dag})$, $(\hat{A}\hat{B})^{\dag} = \hat{B}^{\dag} \hat{A}^{\dag}$
+\hl{I}
+If an operator is represented by a matrix, then the Hermitian conjugation is its transpose and complex conjugation
+\hl{I}
+$\hat{O}^{\dag} = \hat{O}^{T*}$, $(\hat{O}^{\dag})_{mn} = \hat{O}_{mn}^{*}$
+
+\colorbox{Orange}{What good is Hermitian}
+Hermitian operators naturally correspond to physical observables
+Position operator, in momentum space $\hat{x} = i\hbar \frac{d}{dp}$,
+Momentum operator,  $\hat{p} = -i\hbar \frac{\partial}{\partial x}$
+Potential Energy U  Operator $U(x)$
+Total Energy Operator $\hat{E} = i\hbar\frac{\partial}{\partial t}$
+Kinetic energy operator in position space $\hat{K} = - \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}$
+Hamiltonian Operator $\hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+U(x)$
+\hl{I}
+$\langle \hat{O} \rangle = \int_{-\infty}^{\infty} \psi^* \hat{O} \psi dx$
+\colorbox{Orange}{Properties of Hermitian Operators}
+\textbf{1. Hermitian operators have real eigenvalues}
+$\hat{A}\psi_a (x) = a\psi_a (x)$,
+$\langle \hat{A} \rangle = \angle \psi_a | \hat{A} | \psi_a \rangle = \int_{-\infty}^{\infty} \psi^*_a (x) \hat{A} \psi _a (x) dc = \int_{-\infty}^{\infty} \psi_a^* (x) a \psi_a (x) dx = a \langle \psi_a | \psi_a \rangle$,
+$a = \frac{\langle \psi_a | \hat{A} | \psi_a \rangle}{\langle \psi_a | \psi_a \rangle}$
+\textbf{2 The eigenfunctions of a hermitian operator corresponding to different eigenvalues are orthogonal}
+Example: standard well $\langle u_n | u_m \rangle = \delta_{mn}$
+Same is true for the symmetric infinite well:
+$\langle u_n^+ | u_m^- \rangle = 0$ for all m and n
+$\langle u_n^+ | u_m^+ \rangle = \delta_{mn}$ 
+$\langle u_n^- | u_m^- \rangle = \delta_{mn}$ 
+Same is true in momentum space, if the eigenfunctions are also normalized $\langle u_n | u_n \rangle =1$ we sat they from an orthonormal set
+\hl{I}
+the orthogonality is not limited to energy eigenstates, example: eigenstates of the momentum operator in position space
+$\hat{p}\psi_p (x) = p\psi_p (x)$,
+$-i\hbar \frac{d\psi_p (x)}{dx} = p\psi_p (x)$,
+$\psi_p(x) = \frac{1}{\sqrt{sn\hbar}}e^{ipx/\hbar}$,
+$\langle \psi_p | \psi_{p^{\prime}} \langle = \int_{-\infty}^{\infty} (\frac{1}{\sqrt{2\pi \hbar}}e^{ipx/\hbar})^{*}(\frac{1}{\sqrt{2 \pi \hbar}}e^{ip^{\prime}x/\hbar})dx = \frac{1}{2\pi \hbar} \int_{-\infty}^{\infty} e^{i(p^{\prime}-p)x/\hbar}dx = \delta(p^{\prime} - p)$
+This is an example of an orthonormal set of eigenfunctions in the continuum (eigenstates of momentum operator in position space)
+\textbf{The eigenfunctions of a hermitian operator corresponding to different eigenvalues are orthogonal, if there's a degeneracy (there are more than one eigenfunction for the same eigenvalue), the set of such eigenfunctions are generally not orthogonal, but can be made so by hand}
+\colorbox{Orange}{Expansion in energy eigenstates}
+example: standard infinite well
+$\psi(x,t) = \sum_{n = 1}^{\infty}a_n u_n (x)e^{-iE_n t/\hbar}$
+$\langle \psi | \psi \rangle = \int_{-\infty}^{\infty} \psi^{*} (x,t) \psi (x,t) dx = \int_{-\infty}^{\infty}(\sum_{n = 1}^{\infty}a_n u_n (x)e^{-iE_n t/\hbar})^{*}(\sum_{m = 1}^{\infty}a_m u_m (x)e^{-iE_m t/\hbar})dx = \sum_{n=1}^{\infty}\sum_{n=1}^{\infty}a_n^* a_m e^{-i(E_m - E_n)t/\hbar} \int_0^L u_n^*(x) u_m(x) dx = \sum_{n=1}^{\infty} |a_n|^2 $,
+$\langle \psi | \psi \rangle = 1 \text{ means } \sum_{n=1}^{\infty} |a_n|^2  = 1$ 
+For $\psi(x,t)$ to be normalized, all the expansion coefficients $|a_n|^2$ must sum to unity
+\textbf{What about energy expectation values}
+$\phi(x,t) = \sum_{n=1}^{\infty} a_n u_n (x) e^{-iE_n t/\hbar}$
+\hl{I}
+$\langle \hat{E} \rangle = \rangle = \langle \psi | \hat{E} | \psi \rangle = \int_{-\infty}^{\infty} \psi^*(x,t)\hat{E} \psi (x,t) dx = \int_{\infty}^{\infty} (\sum_{n=1}^{\infty} a_n u_n (x) e^{-E_n t/\hbar})^* (i\hbar \frac{\partial}{\partial t})(\sum_{m=1}^{\infty}a_m u_m (x) e^{-iE_mt/\hbar})dx = \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} a_n^* a_m E_m e^{-i(E_m - E_n)t/\hbar} \int_0^L u_n^* (x)u_m (x) dx = \sum_{n=1}^{\infty}|a_n|^2 E_n$
+\hl{I}
+$\langle \hat{E}^{k} \rangle = \sum_{n-1}^{\infty} |a_n|^2 E_n^k$
+\hl{I}
+A general state will have
+\hl{I}
+$\Delta E = \sqrt{\langle \hat{E}^2\rangle - \langle \hat{E} \rangle^2 } \neq 0$ unless it is an energy eigenstate.
+
+\colorbox{Orange}{The parity operator}
+\textbf{Definition:}$\hat{P} \psi (x) \equiv \psi (-x)$
+\textbf{Eigenvalues:} $\hat{P} \psi (x) \equiv \lambda_p \psi (x)$,
+$\hat{P}^2 \psi (x) \equiv \lambda_p \hat{P} \psi (x) = \lambda_p^2 \psi (x) = \psi(x)$,
+$\lambda_p^2 = 1 \text{ or } \lambda_p = \pm 1$
+\textbf{Eigenfunctions:} $\hat{P}\psi_E (x) \equiv +\psi_E(x)$,
+$\hat{P}\psi_O (x) \equiv +-psi_o(x)$
+Any wavefunction can be decomposed into and even and odd parts:
+$\psi(x) = \frac{\psi(x) + \psi(-x)}{2}+\frac{\psi(x) - \psi(-x)}{2} = \psi_E (x) + \psi_o(x)$
+$=C_E \widetilde{\phi_E}(x) + c_o \widetilde{\phi_o} (x)$ for normalized $\widetilde{\phi_E}(x)$  $\widetilde{\phi_o}(x)$
+They are naturally orthogonal: $\langle \psi_E | \psi_o \langle = \int_{-\infty}^{\infty} \psi_E^* (x) \phi_0(x) dx = 0$ Te modulus squares of the coefficients, $|c_E|^2$ and $|c_o|^2$, are the probabilities of finding the state with even (positive) or odd (negative) parity.
+\colorbox{Orange}{Commutator}
+$[\hat{x},\hat{p}] \equiv \hat{x}\hat{p} - \hat{p}\hat{x}$
+\hl{I}
+$(\hat{x}\hat{p} - \hat{p}\hat{x})\phi(x) = x(-i\hbar \frac{d}{dx})\phi(x) - (-i\hbar \frac{d}{dx}[x\psi(x)] = i\hbar \psi(x)$
+\hl{I}
+$[\hat{x},\hat{p}] = i\hbar$
+In quantum mechanics, if two operators do not commute, then there exists an uncertainty prince associated with them for example
+$[\hat{x},\hat{p}] = i\hbar$, $\Delta x\Delta p \leq \hbar / 2$ 
+In other words, they cannot be determined to arbitrary precision simultaneously. In quantum mechanics, if two operators commute, then there exists simultaneous eigenfunctions between them. For example, in the symmetric infinite well, the parity operator commutes with the hamiltonian operator:
+$[\hat{P},\hat{H}] = 0$
+The wavefunctions $u_n^+ (x)$ and $u_n^-(x)$ are simultaneous eigenfunctions to energy and parity:
+$\hat{H}u_n^+ (x) = E_n^+ u_n^+ (x)$, 
+$\hat{H}u_n^- (x) = E_n^- u_n^- (x)$, 
+$\hat{P}u_n^+ (x) = (+1)u_n^+ (x)$, 
+$\hat{P}u_n^- (x) = (-1)u_n^- (x)$, 
+In other words, they can be determined to arbitrary precision simultaneously.
+In quantum mechanics, we always seek the largest set of commuting operators in a given problem. 
+\colorbox{Orange}{The expansion postulate}
+The eigenfunctions of a Hermitian operator form a complete set: any admissible wave function can be expanded in such eigenfunctions
+given $\psi(x,0)$ find $\psi(x,t)$
+$\psi(x,0) = \sum_{n=1}^{\infty} a_n u_n (x)$
+Invert it to find the coefficients:
+$a_n = \int_0^{L} \psi (x,0) u_n (x) dx$
+The solution is then 
+$\psi(x,t) = \sum_{n=1}^{\infty} a_n u_n (x)e^{-iE_n t/\hbar}$
+
+
+\colorbox{Orange}{6.6 Parity}
+parity operator $\hat{P}f(x) \equiv f(-x)$
+\colorbox{Orange}{6.7 Simultaneous Eigenfunctions}
+Two hermitian operators $\hat{A}  \text{ and } \hat{B}$ can have simultaneous eigenfunctions if and only if they commute with each other, that is, 
+$[\hat{A},\hat{B}] \equiv \hat{A}\hat{B} - \hat{B}\hat{A} = 0$
+\colorbox{Orange}{Symmetric infinite well}
+\[
+    V(x)=\left\{
+                \begin{array}{ll}
+                  0 \text{ for } 0< x < a\\
+                  + \infty \text{ for } x < 0 \text{ or }+a < x\\
+                \end{array}
+              \right.
+\]
+Inside: $\psi_{E}(x)=A\sin(kx)+B\cos(kx)$
+\hl{I}
+Outside: $\psi_{E}(x)=0$
+\hl{I}
+The only difference is boundary conditions:
+$A\sin(ka) + B\cos(ka) = 0$
+\hl{I}
+$A\sin(-ka) + B\cos(-ka) = 0$
+\hl{I}
+Solution: $A\sin(ka) = 0 \text{and} B\cos(ka) = 0$ 
+\hl{I}
+Two possibilities: A=0 or B=0 (Both A=B=0 is trivial)
+\hl{I} 
+Even solutions:$ A = 0 \text{ and } \cos(ka) = 0$ 
+\hl{I}
+$k_{n}^{+} = \frac{(n-1/2)\pi}{a} \text {with } n=1,2,3...$
+\hl{I}
+$E_{n}^{+} = \frac{(\hbar k_n)^2}{2m} = \frac{(2n-1)^2 \pi^2 \hbar^2}{8ma^2}$
+\hl{I}
+$\psi_{n}^{+}(x)=\frac{1}{\sqrt{a}}\cos(\frac{(n-1/2)\pi x}{a})$
+\hl{I}
+Odd solutions:$ B = 0 \text{ and } \sin(ka) = 0$
+\hl{I}
+$k_n^- =  \frac{n\pi}{a} \text{ with } n = 1,2,3...$
+\hl{I}
+$E_n^- = \frac{(\hbar k_n^-)^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2}$
+\hl{I}
+$\psi_n^- (x) = \frac{1}{\sqrt{a}} \sin(\frac{n\pi x}{a}) $
+\hl{I}
+The emergence of even and odd solutions is called parity
+\colorbox{Orange}{Normalization}
+$\int_{-\infty}^{\infty} P(x,t)dx = \int_{-\infty}^{\infty} |\psi(x,t)|^2 dx = \int_{-\infty}^{\infty} \psi^{*}(x,0) \psi(x,0) dx = 1$
+\colorbox{Orange}{6.6 Parity}
+$\hat{P}f(x) \equiv f(-x)$
+\hl{I} 
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{8 Other one-dimensional potentials}
+$i\hbar \frac{\partial \psi(x,t)}{\partial t} = \hat{H} \psi(x,t)$
+\hl{I}
+Hamiltonian operator $\hat{H} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x,t)$
+\hl{I}
+If the potential is independent of time $V(x,t) = V(x)$, we seek stationary states: $\psi(x,t) = \psi_E (x) e^{-iEt/\hbar}$
+\hl{I}
+by solving the eigenvalue problem: $\hat{H}\psi_E (x) = E\psi_E(x)$ (time-independent schrodinger equation)
+\colorbox{Orange}{The symmetric finite square well: classically}
+$m\frac{d^2 x(t)}{dt^2} = -\frac{\partial V (x,t)}{\partial x}$
+\hl{I}
+$V(x) = -V_0 for -a <x<+a, 0 \text{ otherwise }$, If total energy  $E<0$, speed $v_0 = \sqrt{2|E|/m}$, momentum $p_0 = mv_0 = \sqrt{2m |E|}$, elastic collisions with the walls (forbidden to go inside the walls), periodic motion $\tau = 2a/v_0$ 
+\hl{I}
+If total energy $E > 0$, -unbound motion, motion speeds up across the well (T = E-V)
+\colorbox{Orange}{The symmetric finite square well: quantum - mechanically}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)] \psi_E(x) = E \psi_E (x)$
+\hl{I}
+$V(x) = -V_0 for -a <x<+a, 0 \text{ otherwise }$
+We seek bound states (E<0) Unbound states (E>0) will be considered later in scattering problems
+\hl{I}
+For bound states $(E<0)$ 1. Potential is symmetric $\rightarrow$ expect even and odd solutions(eigenfunctions of parity), same as in infinite well
+2. Finite well $\rightarrow$ finite number of bound states, depending on depth $(V_0)$ and width (a), vs. infinite number of states in the infinite well
+3. Penetration of classically forbidden region vs no penetration in classical well
+\hl{I}
+Inside $(|x| < a): \frac{d^2 \psi_E (x)}{dx^2} = -q^2 \psi_E (x) \text{ where } q = \sqrt{\frac{2m(V_0 - |E|)}{\hbar}}$
+\hl{I}
+Outside $(|x|>a): \frac{d^2 \psi_E(x)}{dx^2}=+k \psi_E (x) \text{ where } k= \sqrt{\frac{2m|E|}{\hbar}}$
+\hl{I}
+Even solutions: $\psi^{(x)}(-x) = \psi^{(x)} (x)$
+\hl{I}
+$\psi^{(+)}(x) = Ce^{+ke} \text { for } x \leq -a$, $a\cos(qx) \text{ for } -a \leq x \leq +a$, $Ce^{-kx} \text { for } +a \geq x$
+\hl{I}
+Match $\psi^{(+)}  \text{ at } x = +a$:  $A\cos(qa) = Ce^{-ka}$,  Match $\frac{d\psi^{(+)}}{dx}  \text{ at } x = +a$:  $-qA\sin(qa) = -kCe^{-ka}$, Matching at X = -a yields the same conditions
+\hl{I}
+Odd solutions: $\psi^{(-x)}(-x) = -\psi^{(-x)} (x)$
+\hl{I}
+$\psi^{(-)}(x) = -Ce^{+ke} \text { for } x \leq -a$, $B\sin(qx) \text{ for } -a \leq x \leq +a$, $+Ce^{-kx} \text { for } +a \geq x$
+\hl{I}
+Match $\psi^{(-)}  \text{ at } x = +a$:  $B\sin(qa) = Ce^{-ka}$,  Match $\frac{d\psi^{(-)}}{dx}  \text{ at } x = +a$:  $qB\sin(qa) = -kCe^{-ka}$, Matching at X = -a yields the same conditions
+\hl{I}
+Even eigenvalue condition: $q\tan(qa) = k$, Odd eigenvalue condition: $-q\cot(qa) = k$
+\hl{I}
+Even eigenvalue condition: $\sqrt{R^2 - y^2 } = +y\tan(y)$, Odd eigenvalue condition $\sqrt{R^2 - y^2 } = +y\cot(y)$, where $ y = qa$ and $ R = \sqrt{\frac{2nV_0a^2}{\hbar^2}}$
+The number of bound states is finite, but increases with depth $(V_0)$ and width $(a)$, for fixed width, as $V_0 \rightarrow \infty$, $y\rightarrow(n-1/2)\pi $, implying $ \frac{(n-1/2)^2 \hbar^2 \pi^2}{2ma^2} \rightarrow E_n^{(+)}$
+\hl{I}
+There is always at least one bound state (even parity) no matter how narrow or shallow the well. Odd-parity states appear only if $R \geq \pi/2$, there will be $(n+1)$ even bound states if $n\pi < R < (n+1)\pi$, the will be n odd bound states if $(n-1/2)\pi < R <(n+1/2)\pi$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{9 The Harmonic Oscillator}
+\colorbox{Orange}{Harmonic oscillator classically}
+$m\frac{d^2x(t)}{dt^2}=F=\frac{\partial V(x,t)}{\partial x}$
+\hl{I}
+$V(x) = \frac{1}{2}Kx^2 = \frac{1}{2}m\omega^2x^2$
+\hl{I}
+$F=-Kx$
+\hl{I}
+$\omega = \sqrt{K/m}$
+\hl{I}
+$x(t) = C_1 \sin(\omega t) + C_2 \cos (\omega t)$
+\hl{I}
+Total energy $E = 0.5 mv^2 + 0.5Kx^2$ is conserved
+\hl{I} 
+All kinetic energy at equilibrium position (x=0)
+\hl{I}
+Periodic motion $\tau = \frac{2\pi}{\omega}$
+\colorbox{Orange}{Unstable classic harmonic oscillator}
+$V(x) = -\frac{1}{2}Kx^2 = -\frac{1}{2}m\omega^2x^2$
+\hl{I}
+$F=-Kx$
+\hl{I}
+$\frac{d^2 x(t)}{dt^2} = +\omega^2 (x)$
+\hl{I}
+$x(t) = C_1 e^{\omega t} + C_2 e^{-\omega t}$
+\colorbox{Orange}{Harmonic oscillator: quantum solution}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+\frac{1}{2}m\omega^2 x^2] \psi(x) = E\psi(x)$
+\hl{I}
+$\psi(x,t) = \psi(x)e^{-iEt/\hbar}$
+\hl{I}
+Change variable: $x=\rho y$
+\hl{I}
+We seek bound states $(E > 0)$ Expect even and odd solutions
+\hl{I}
+$\frac{d^2\psi(y)}{dy^2} - \frac{m^2 \omega^2 \rho^4}{\hbar^2} y^2 \psi(y) = -\frac{2mE\rho^2}{\hbar^2}\psi(y)$ 
+\hl{I}
+Dimentionless diff. eq: $\frac{d^2 \psi(y)}{dy^2} - y^2 \psi(y) = -\epsilon \psi(y)$
+\hl{I}
+$\rho = \sqrt{\frac{\hbar}{m\omega}}$
+\hl{I}
+$\epsilon = \frac{2E}{\hbar \omega}$
+\hl{I}
+Large y behavior: $\frac{d^2 \psi(y)}{dy^2} \approx y^2 \psi(y)$
+\hl{I}
+which has approx. solution $\psi(y) \sim e^{\pm y^2/2}$
+\hl{I}
+Try solution: $\psi(y) = h(y)e^{-y^2 /2}$
+\hl{I}
+$\frac{d^2 h(y)}{dy^2} -2y\frac{dh(y)}{dy} + (\epsilon - 1)h(y) = 0$
+\colorbox{Orange}{Harmonic oscillator: quantum even-party solution}
+$\frac{d^2 h(y)}{dy^2} -2y\frac{dh(y)}{dy} + (\epsilon - 1)h(y) = 0$
+\hl{I}
+Try even solution: $h^{(+)}(y) = \sum_0^{\infty} a_s y^{2s}$
+\hl{I}
+$\sum_{s=0}^{\infty} 2s(2s - 1)a_s y^{2s-2} + \sum_{s=0}^{\infty} (\epsilon -1 -4s)a_s y^{2s} = 0$
+\hl{I}
+$\sum_{s=0}^{\infty} 2(s+1)(2s + 1)a_{s+1} + (\epsilon -1 -4s)a_s y^{2s} = \sum_{0}^{\infty}B_s y^{2s} = 0$
+\hl{I}
+$B_s = 0$ leads to recurrence relation: $a_{s+1} = a_s[\frac{4s+1-\epsilon}{2(s+1)(2s+1)}]$
+\hl{I}
+For large s and fixed y: $\frac{a_{s+1}y^{2(s+1)}}{a_2 y^2} \rightarrow \frac{y^2}{s}$
+\hl{I}
+Same behavior as: $e^{y^2} = \sum_{s=0}^{\infty} \frac{1}{s!}(y^2)^s$
+\hl{I}
+$h^{(+)}(y) = a_0 + a_1 y^2 + a_2 y^4 + ... \rightarrow e^{y^2}$
+\hl{I}
+$\psi^{(+)}(y) = h^{(+)}(y)e^{-y^2 / 2} \rightarrow e^{y^2/2} \rightarrow \infty$ for large y
+\hl{I}
+Boundary condition: we want $\psi(x)$ to be finite at large y. This mean that $h^{(+)}$ series must terminate to a polynomial at some order n, given by: $4n + 1 - \epsilon = 0$
+\hl{I}
+$a_{s+1} = a_2[\frac{4s+1-\epsilon}{2(s+1)(2s+1)}]$
+\hl{I}
+Even solution: $E_n^{(+)} = (2n+\frac{1}{2})\hbar \omega$
+\hl{I}
+$\psi_n^{(+)}(y) = h_{n}^{(+)}(y)e^{-y^2/2}$
+\hl{I}
+$n = 0,1,2 ...$
+\hl{I}
+$\epsilon =\frac{2E}{\hbar \omega}=4n+1$: must be an integer (quantized)
+\hl{I}
+$E_0^{(+)} = \frac{1}{2}\hbar \omega, \psi_0^{(+)}(y) = a_0 e^{-y^2 /2}$
+\hl{I}
+$E_1^{(+)} = \frac{5}{9}\hbar \omega, \psi_1^{(+)}(y) = a_0 (1-2y^2)e^{-y^2 /2}$
+\hl{I}
+$E_2^{(+)} = \frac{9}{2}\hbar \omega, \psi_2^{(+)}(y) = a_0(1-4y^2+4y^4/3) e^{-y^2 /2}$
+\colorbox{Orange}{Harmonic oscillator: quantum odd-party solution}
+$\frac{d^2 h(y)}{dy^2} -2y\frac{dh(y)}{dy} + (\epsilon - 1)h(y) = 0$
+\hl{I}
+Try odd solution: $h^{(-)}(y) = \sum_0^{\infty} b_s y^{2s+1}$
+\hl{I}
+$\sum_{s=0}^{\infty} 2s(2s - 1)b_s y^{2s-1} + \sum_{s=0}^{\infty} (\epsilon -1 -2(2s+1))b_s y^{2s+1} = 0$
+\hl{I}
+which  leads to recurrence relation: $b_{s+1} = b_s[\frac{4s+3-\epsilon}{2(s+1)(2s+3)}]$
+\hl{I}
+Series must terminate: $4n + 3 - \epsilon  = 0$
+\hl{I}
+$\epsilon = \frac{2E}{\hbar \omega} = 4n + 3$
+\hl{I}
+Odd solution: $E_{n}^{(-)} = (2n + \frac{3}{2}) \hbar \omega$
+\hl{I}
+$\psi_n^{(-)}(y) = h_n^{(-)}(y)e^{-y^2 / 2}$ 
+\hl{I}
+$n = 0,1,2 ...$
+\hl{I}
+$E_n^{(-)} = \frac{3}{2}\hbar \omega,  \frac{7}{2}\hbar \omega,  \frac{11}{2}\hbar \omega , ...$
+\colorbox{Orange}{Harmonic oscillator: combined solution}
+$E_n = (n+\frac{1}{2})\hbar \omega$
+\hl{I}
+$n= 0,1,2 ... $
+\hl{I}
+$\psi_n(x) = C_n H_n (y) e^{-y^2 / 2} $
+\hl{I}
+$y = x / \rho , \rho \equiv \frac{\hbar}{m\omega}$
+\hl{I}
+$C_n = \frac{1}{\sqrt{\rho \sqrt{\pi}2^n n!} }$
+\colorbox{Orange}{Hermite polynomials}
+$H_n (y) = \sum_{s=0}^{n} a_s y^2$
+Solutions to the differential equation: $\frac{d^2 H_n (y)}{dy^2} - 2y \frac{dH_n (y)}{dy} + 2nH_n (y) = 0$
+\hl{I}
+Orthogonality: $ \int_{-\infty}^{\infty} H_m (y) H_n (y) e^{-y^2} dy = 2^{n} n! \sqrt{\pi} \delta_{mn}$
+\hl{I}
+Parity: $H_n(-y) = (-1)^n H_n(y)$
+\hl{I}
+Recurrence relation: $H_{n+1}( y)=2yH_n(y) - 2nH_{n-1}(y)$
+\hl{I}
+Derivative: $H_n^{\prime}(y) = 2nH_{n-1}(y)$
+\hl{I}
+Special values: 
+\[
+    H_n(O)=\left\{
+                \begin{array}{ll}
+                  0 \text{ if n odd} \\
+                  (-1)^{n/2}2^{n/2} (n-1)! \text{ if n even }\\
+                \end{array}
+              \right.
+\]
+Can be generated by: $H_n (y) = (-1)^n e^{y^2} \frac{d^n}{dy^n}(e^{-y^2})$ 
+\hl{I}
+$H_0(y)=1$
+\hl{I}
+$H_1(y) = 2y$
+\hl{I}
+$H_2(y) = 4y^2 - 2$
+\hl{I}
+$H_3(y) = 8y^3 - 12y$
+\hl{I}
+$H_4(y) = 16y^4 - 48y^2 + 12$
+\hl{I}
+$H_5(y) = 32y^5 - 160y^3 + 120y$
+\colorbox{Orange}{Harmonic oscillator: comments}
+$V(x) = \frac{1}{2}Kx^2 = \frac{1}{2}m\omega^2 x^2$
+\hl{I}
+Eigenenergies: $E_n = (n+\frac{1}{2})\hbar \omega, n =0,1,2...$
+ \hl{I}
+Eigenfunctions: $\psi_n(x) = C_n H_n (y) e^{-y^2 / 2}, y = x/\rho , \rho \equiv \sqrt{\frac{\hbar}{m \omega}}, C_n = \frac{1}{\sqrt{\rho \sqrt{\pi}2^n n!}}$
+\hl{I}
+Orthogonality: $\langle \psi_n | \psi_k \rangle = \int_{-\infty}^{\infty} \psi_n (x) \psi_k (x) dx =\delta_{n,k}$
+\hl{I}
+Parity:$ \psi_{n}(-x) = (-1)^n \psi_n (x) $ (even if n even, odd if n odd)
+\hl{I}
+Useful integrals (matrix elements):
+$\langle \psi_n | x | \psi_k \rangle = \sqrt{\frac{\hbar}{m\omega}}(\delta_{n,k-1} \sqrt{k}+\delta_{n, k+1}\sqrt{k+1})$
+\hl{I}
+$\langle \psi_n | \hat{p} | \psi_k \rangle = -i \sqrt{\frac{m \omega \hbar}{2}}(\delta_{n,k-1} \sqrt{k}+\delta_{n, k+1}\sqrt{k+1})$
+\hl{I}
+$\langle \psi_n | \hat{x}^2 | \psi_k \rangle = \frac{\hbar}{m\omega} (n+\frac{1}{2})$
+\hl{I}
+$\langle \psi_n | \hat{p}^2 | \psi_k \rangle = m \hbar \omega (n+\frac{1}{2})$
+\hl{I}
+$\langle \psi_n | \hat{x}^4 | \psi_k \rangle = \frac{3}{4} (\frac{\hbar}{m\omega})^2 (2n^2 + 2n _1)$
+\hl{I}
+$\langle \psi_n | \hat{p}^4 | \psi_k \rangle = \frac{3}{4} (m\hbar \omega)^2 (2n^2 + 2n _1)$
+\hl{I}
+1) Energy levels are evenly spaced, with a spacing of $\hbar \omega$, 2) Alternating in parity, with the lowest state even, 3) Zero-point energy
+\hl{I}
+Eigenfunctions from a complete set: $ \psi(x,t) = \sum_{n=0}^{\infty} a_n \psi_n (x) e^{-i E_n t / \hbar}$
+\colorbox{Orange}{Harmonic oscillator: uncertainty principle}
+$\Delta x = \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = \sqrt{\frac{\hbar}{m\omega}(n+\frac{1}{2})}$
+\hl{I}
+$\Delta p = \sqrt{\langle \hat{p}^2 \rangle - \langle \hat{p} \rangle^2} = \sqrt{m\hbar \omega (n+\frac{1}{2})}$
+\hl{I}
+$\Delta x \Delta p = (n + \frac{1}{2})\hbar \geq \frac{\hbar}{2}$
+\hl{I}
+The minimum allowed by the uncertainty principle is satisfied by the ground state of the harmonic oscillator
+\hl{I}
+Ground-state energy: $E_0 = \frac{\hbar \omega}{2}$
+\hl{I}
+Ground-state wavefunction is Gaussian: $\psi_0(x) = \frac{1}{\sqrt{\rho \sqrt{\pi}}}e^{1\frac{x^2}{2\rho^2}}, \text{ where } \rho \equiv \sqrt{\frac{\hbar}{m\omega}}$
+
+
+\colorbox{Orange}{9.2 Solutions for the Simple Harmonic Oscillator}
+SHO potential $V(x) = \frac{Kx^2}{2}=\frac{m\omega^2 x^2}{2}$
+\hl{I}
+time-independent Schrodinger equation $\frac{-\hbar}{2m}\frac{d^2 \psi (x)}{dx^2} + \frac{m \omega^2 x^2}{2}\psi(x) = E\psi(x)$  
+
+
+
+
+
+
+\colorbox{YellowGreen}{Exam II}
+\colorbox{Cyan}{Chap11 Scattering from 1d potentials 30 points}
+\colorbox{Orange}{Scattering in 1d}
+Incident + Reflected. free-particle $V(x) = 0$
+\hl{I}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}]\psi(x) = E \psi (x) = E\psi(x)$
+\hl{I}
+$\psi_{inc}(x,t) = Ie^{i(px-Et)\hbar}$
+\hl{I}
+$\psi_{ref}(x,t) = Re^{i(-px-Et)/\hbar}$
+\hl{I}
+$E=\frac{\hbar^2 k^2}{2m} = \frac{p^2}{2m}$
+
+\textbf{Interaction region $V(x)$}
+\hl{I}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+V(x)]\psi(x) = E\psi(x)$
+\hl{I}
+$\psi_{int} (x)$
+\hl{I}
+\textbf{Transmitted "free-particle"(step $V_0$)}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}]\psi(x) = (E-V_0)\psi(x)$
+\hl{I}
+$\psi_{tran}(x,t) = Te^{I(qx-E_q t)/ \hbar}$
+\hl{I}
+$E_q - V_0 = \frac{\hbar^2 q^2}{2m}$
+\hl{I}
+The wavefunctions are scattering states (not bound states), The wave functions in the 3 regions must match up smoothly ($\psi$ and $\psi^{\prime}$), For plane-waves, we can drop the time dependence for convenience
+\hl{I}
+In scattering, the entity that naturally corresponds to experiments is not the wave function, but the probability flux: 
+$j(x,t) = \frac{\hbar}{2mi}(\psi^{*}\frac{\partial \psi}{\partial x} - \psi \frac{\partial \psi^{*}}{\partial x}) = \frac{1}{2m} (\psi^{*} \hat{p} \psi - \psi \hat{p} \psi^{*})$
+\hl{I}
+For plane-waves traveling in either directions $\psi(x,t) = Ae^{i(\pm px-Et)/\hbar}$
+\hl{I}
+$j(x,t) = \pm \frac{p}{m} \abs{A}^2 \equiv = \pm v \abs{A}^2$
+\hl{I}
+The flux carries information on the veocity and intensity of the wave particle. It could be thought of as "number of particles passing through per unit time". If the number of particles is conserved in te process (called elastic scattering), then we expect flux conservatoin: $\abs{j_i} = \abs{j_r}+ \abs{j_T}$
+\colorbox{Orange}{Scattering from a potential step}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}]\psi(x) = (E)\psi(x)$
+\hl{I}
+$V(x) = 0$ when $x < 0$ and $V_0$ when $x>0$ 
+\hl{I}
+$E > V_0 > 0$
+\hl{I}
+$\psi(x) = Ie^{+ikx} + Re^{-ikx}$ for $x < 0$ where $k = \sqrt{\sqrt{2mE}{\hbar^2}}$ and $Te^{iqx}$ for $x>0$ where $q=\sqrt{\frac{2m(E-V_0)}{\hbar^2}}$
+\hl{I}
+Match $\psi(x)$ at $x=0$: $I + R = T$
+\hl{I}
+Match $\psi^{\prime}(x)$ at $x=0$: $ikI - ikR = iqT$
+\hl{I}
+$R=I(\frac{k-q}{k+q})$ and $T=I(\frac{2k}{k+q})$
+\hl{I}
+Reflection coefficient = $\abs{\frac{j_r}{j_I}} = \frac{(\hbar k / m)\abs{R}^2}{(\hbar k  / m)\abs{I}^2} =  \frac{\abs{R}^2}{\abs{I}^2} = (\frac{k-q}{k+q})^2 = (\frac{\sqrt{E}- \sqrt{E-V_0}}{\sqrt{E}+\sqrt{E-V_0}})^2$
+\hl{I}
+transmission coefficient $= \abs{\frac{j_T}{j_I}} = \frac{(\hbar q / m)\abs{T}^2}{(\hbar k  / m)\abs{I}^2} =  \frac{q\abs{R}^2}{k\abs{I}^2} = \frac{2kq}{(k+q)^2} = \frac{2\sqrt{E(E-V_0)}}{(\sqrt{E}+\sqrt{E-V_0})^2}$
+\hl{I}
+Check flux conservation
+$\abs{\frac{j_R}{j_I}} + \abs{\frac{j_T}{j_I}} = 1$
+\hl{I}
+for Case $E>V_0$ change sign of $V_0$ 
+\hl{I}
+wave functions with shorter period are faster
+\hl{I}
+Case $0<E<V_0$l, now $E-V_0$ in $q$ is negative
+\hl{I}
+$q = \sqrt{\frac{2m(E-V_0)}{\hbar^2}} = i\sqrt{\frac{2m(V_0 - E)}{\hbar^2}} = ik$
+\hl{I}
+$\psi(x) = Ie^{+ikx} + Re^{-ikx}$ for $x < 0$ where $k = \sqrt{\frac{2mE}{\hbar^2}}$ and $Te^{-Kx}$ for $x>0$ where $K=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}$
+\hl{I}
+$R=I(\frac{k-iK}{k+iK})$ and $T=I(\frac{2k}{k+iK})$
+\hl{I}
+Reflection coefficient = $\abs{\frac{j_R}{j_I}} = \frac{(\hbar k / m)\abs{R}^2}{(\hbar k  / m)\abs{I}^2} =  \frac{\abs{R}^2}{\abs{I}^2} = (\frac{k-iK}{k+iK})^2 = 1$
+\hl{I}
+transmission coefficient $= \abs{\frac{j_T}{j_I}} = \frac{0}{(\hbar k  / m)\abs{I}^2} =  0$
+\hl{I}
+Observations: All reflection, no transmission, consistent with classical physics, the particle ventures into the classically-forbidden region. How much it does so depends on the difference $V_0 - E$ One can define penetration depth $\frac{1}{K}$, Phase shift on reflection, the bigger $(V_0 - E)$ the more shift
+\colorbox{Orange}{Scattering from the finite square well}
+$[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + V(x)]\psi(x) = (E)\psi(x)$
+\hl{I}
+$V(x) = -V_0$ when $-a<x <a$ and $0$ otherwise 
+\hl{I}
+$\psi(x) = Ie^{+ikx} + Re^{-ikx}$ for $x \leq -a $  and $Ge^{+iqx} + Fe^{-iqx}$ for $-a \leq x \leq a $ and $Te^{ikx}$ for $a \leq x$ where $k = \sqrt{\frac{2mE}{\hbar^2}}$ and $q = \sqrt{\frac{2m(E+V_0}{\hbar^2}}$
+\hl{I}
+Match $\psi$ at $x=-a$: $ Ie^{-ika} + Re^{ika} = Ge^{-iqa} + Fe^{iqa}$ and at $x=+a$: $Ie^{ika} + Re^{-ika} = Te^{iqx}$
+\hl{I}
+Match $\psi^{\prime}$ at $x=-a$: $ ik(Ie^{-ika} - Re^{ika}) = iq(Ge^{-iqa} + Fe^{iqa})$ and at $x=+a$: $ik(Ie^{ika} - Re^{-ika}) = iq(Te^{iqx})$
+\hl{I}
+Flux conservation in 3 regions
+$\abs{j_I} - \abs{j_R} = \abs{j_well} = \abs{j_T}$
+\hl{I}
+$\abs{\frac{T}{I}}^2 = \frac{1}{1+(\frac{k^2 - q^2}{2kq})^2 \sin^2(2qa)}$
+\hl{I}
+$\abs{\frac{R}{I}}^2 = 1 - \abs{\frac{T}{I}}$
+\hl{I}
+Observations
+A classical particle speeds up (shorter wavelength) over the well, the reflection is purely quantum, when $E >> V_0$ little reflection, another purely quantum phenomenonL there are special vlaues of E for which there's no reflection, corresponding to transmission resonances. Conditions are $sin(2qa) = 0$, for $n=1,2,3...$
+
+\colorbox{Orange}{Scattering from finite square barrier}
+Case $E > V_0$ reverse sign of $V_0$ from finite square well
+\hl{I}
+Case $E < V_0$
+\hl{I}
+$\psi(x) = Ie^{+ikx} + Re^{-ikx}$ for $x \leq a $ and $Ee^{-Kx} + Fe^{Kx}$ for $-a \leq x \leq a$  and $Te^{ikx}$ for $x>0$ where $k = \sqrt{\sqrt{2mE}{\hbar^2}}$ $K=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}$
+\hl{I}
+\textbf{Quantum tunneling probability}
+$\abs{\frac{T}{I}}^2 = \frac{1}{1+(\frac{k^2 + K^2}{2kK})^2 \sinh^2(2Ka)}$
+
+
+
+
+
+
+
+
+
+
+
+\colorbox{Cyan}{Chap12 More formal aspects 30points}
+\textbf{Fynman-Hellman theorem}
+ Suppose the hamiltonian of a system has an explicit dependence on a parameter $\lambda$, with its energy eigenvalues and eigenfunctions: $\hat{H}(\lambda)\psi (\lambda) = E (\lambda)\psi(\lambda)$ then the following relation holds
+$\frac{\partial E(\lambda)}{\partial \lambda} = \langle \frac{\partial \hat{H}(\lambda)}{\partial \lambda} \rangle = \braket { \psi (\lambda) | \frac{\partial \hat{H} (\lambda) }{ \partial \lambda} | \psi (\lambda) } $ In words: the derivative of the expectation value of energy with respect to a parameter on which it may depend, can be computed from the explicit dependence in the hamiltonian operator only, disregarding the implicit one. 
+\hl{I}
+Example: harmonic oscilator, $\hat{H} = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + \frac{1}{2}m\omega^2x^2$, $E_n = (n + \frac{1}{2})\hbar \omega$,  Choosing $\hbar$ as parameter, we have $\frac{\partial \hat{H}(\hbar)}{\partial \hbar} = -\frac{\hbar}{m}\frac{d^2}{dx^2}$ and $\frac{\partial E(\hbar)}{\partial}$ and $\frac{\partial E(\hbar)}{\partial \hbar} =  (n+\frac{1}{2})\omega$ 
+\hl{I}
+$\frac{\partial E(\hbar)}{\partial \hbar} = \braket{\frac{\partial \hat{H}(\hbar)}{\partial \hbar}}$ leads to $(n+\frac{1}{2})\omega = \braket{- \frac{\hbar}{m}\frac{d^2}{dx^2}}$ Or $\braket{T} = \braket{- \frac{\hbar}{2m}\frac{d^2}{dx^2}} = \frac{E_n}{2}$
+A result obtained before by relying on the integral $\braket{\psi | \hat{p}^2 | \psi}$. The Feynman-Hellman theorem achieved it by simply derivatives, without going through the wavefunction explicitly.
+\textbf{Virial theorem}
+In classical mechanics, the virial theorem provides a general relation between the time average of the kinetic energy and potential energy of the system. $\braket{T} = \frac{1}{2}\braket{x\frac{dV(x)}{dx}}$ (one-dimensional) $\braket{T} = \frac{1}{2}\braket{\vec{r} \cdot \nabla V(\vec{r})}$ (three-dimensional) The quantum version has the same form, except $\braket{...}$ now means expectation values in the eigenstates of the Hamiltonian of the system $\hat{H} = \hat{T} + V$, $\hat{H}\psi = E\psi$
+It quickly establishes how energy is shared in the system with little calculation. 
+hl{I}
+Example: harmonic oscilator, $\hat{H} = \hat{T} + V = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + \frac{1}{2}m\omega^2 x^2$, $\braket{T} = \frac{1}{2}\braket{x\frac{dV(x)}{dx}} = \frac{1}{2} m\omega^2 \braket{x^2} = \braket{V} = \frac{E}{2}$ So the energy is shared half and half in the harmonic oscillator system
+\hl{I}
+\textbf{Geometric structures of quantum mechanics} Hilbert space (infinite-dimentional)
+\hl{I}
+State: ket $|\psi \rangle$ and bra $\langle \psi |$
+\hl{I}
+Complex functions 
+\hl{I}
+Inner product of a bra and a ket: $\braket{\psi | \chi}$
+\hl{I}
+Normalization: $\braket{\psi | \psi} = 1$
+\hl{I}
+Expansion in eigenstates: $|\psi \rangle = \sum_{n=1}^{\infty} a_n | u_n \rangle$
+\hl{I}
+Complete and orthonormal basis: $\braket{u_i | u_j} = \delta_{ij}$
+\hl{I}
+Different representations
+\hl{I}
+Position space $\psi(x)$
+\hl{I}
+Momentum Space $\phi(p)$
+\hl{I}
+Expansions coefficients:$\{ a_n\}$
+\hl{I}
+Hilbert space is closed: linear combinations of states are still states. Same is true of Euclidean space: linear combinations of vectors are still vectors. We deal exclusively with linear operators on Hilbert space: $\hat{O} (\alpha \psi_a + \beta \psi_b) = \alpha \hat{O} \psi_a + \beta \hat{O} \psi_b$ Hence the close connection between linear algebra and quantum mechanics
+\hl{I}
+\textbf{Unitary operators} A class of operators in Hilbert space that preserve the inner products of bras and kets
+\hl{I}
+if $| \psi^{\prime} \rangle = \hat{U} | \psi \rangle$, then $\braket{\psi_a | \psi_b} = \braket{\psi_a^{\prime} | \psi_b^{\prime}} = \braket{\hat{U} \psi_a | hat{U} \psi_b } = \braket{\psi_a | \hat{U}^{\dag} \hat{U} | \psi_b } $
+\hl{I}
+$\hat{U}^{\dag} \hat{U} = I$ (Definition of unitary operator)
+\hl{I}
+$U^{T*}U  = I$ or $\sum_k (U^{T*})_{ik} U_{kj} = \delta_{ij}$
+\hl{I}
+Example1: rotation of two-dimensional vectors as unitary transformations.
+$\vec{x}^{\prime} = R\vec{x}$ or $ \begin{pmatrix} x^{\prime}\\ y^{\prime} \end{pmatrix} = \begin{pmatrix} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} $
+\hl{I}
+$R^{+}R = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix} \begin{pmatrix} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I $
+\hl{I}
+Example2: Fourier transform as a unitary transformation 
+$\psi (x) = \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty} \phi(p)e^{ipx/\hbar}dp =  \int_{-\infty}^{\infty} (\frac{e^{ipx/\hbar}}{\sqrt{2\pi \hbar}}) \phi(p)dp = \int_{-\infty}^{\infty} U_{px} \phi(p)dp$
+\hl{I}
+$U_{px} = \frac{e^{ipx/\hbar}}{\sqrt{s \pi \hbar}}$
+\hl{I}
+$\int_{-\infty}^{\infty} (U^{T*})_{x^{\prime}p} U_{px}  \phi(p)dp =  \frac{1}{\sqrt{2\pi \hbar}} \int_{-\infty}^{\infty} e^{ip(x-x^{\prime})/\hbar} dp = \delta(x-x^{\prime}) $ Similarly for the inverse Fourier transform
+\hl{I}
+\textbf{Example 3: Expansion in a complete set of eigenstates} 
+$\psi(x) = \sum_{n} a_n u_n (x) = \sum_n U_{xn} a_n$
+\hl{I}
+$\int_{-\infty}^{\infty} (U^{T*})_nx U_{xm} dx = \int_{-\infty}^{\infty}  u_{n}^{*}(x)u_{m}(x)dx = \delta_{nm}$ (orthogonality)
+\hl{I}
+or $\sum_{n}(U^{T*})_{x^{\prime}n}U_{nx} = \sum_{n}u_{n}^{+}(x^{\prime})u_{n}(x) = \delta(x-x^{\prime})$ (completeness)
+\colorbox{Orange}{More on commutators}
+$\comm{\hat{A}}{\hat{B}} = \hat{A}\hat{B} - \hat{B}\hat{A}$
+\hl{I}
+$\comm{c}{\hat{A}} = 0$
+\hl{I}
+$\comm{\hat{A}}{\hat{A}} = 0$
+\hl{I}
+$\comm{\hat{A}}{\hat{B}} = - \comm{\hat{B}}{\hat{A}}$
+\hl{I}
+$\comm{\alpha \hat{A} + \beta \hat{B}}{\hat{C}} = \alpha \comm{\hat{A}}{\hat{C}} + \beta \comm{\hat{B}}{\hat{C}}$
+\hl{I}
+$\comm{\hat{A}\hat{B}}{\hat{C}} = \hat{A}\comm{\hat{B}}{\hat{C}} + \comm{\hat{A}}{\hat{C}}\hat{B} $
+\hl{I}
+$\comm{\hat{A}}{\hat{B}\hat{C}} = \hat{B}\comm{\hat{A}}{\hat{C}} + \comm{\hat{A}}{\hat{B}}\hat{C} $
+\hl{I}
+$\comm{\hat{x}^{2}}{\hat{p}} = \hat{x}\comm{\hat{x}}{\hat{p}} + \comm{\hat{x}}{\hat{p}}\hat{x} = 2i \hbar \hat{x}$
+\hl{I}
+$\comm{\hat{x}}{\hat{p}^{2}} = \hat{p}\comm{\hat{x}}{\hat{p}} + \comm{\hat{x}}{\hat{p}}\hat{p} = 2i \hbar \hat{p} $
+\hl{I}
+$\comm{\hat{x}}{f(\hat{p})} = i\hbar \frac{df(\hat{p})}{d\hat{p}}$
+\hl{I}
+$\comm{\hat{p}}{f(x)} = -i\hbar \frac{df(x)}{dx}$
+\hl{I}
+\textbf{Vector equivalent}
+$\vec{A} \times \vec{A} = 0$
+\hl{I}
+$\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$
+\hl{I}
+$(\alpha \vec{A} + \beta \vec{B})\times \vec{C} = \alpha \vec{A} \times \vec{C} + \beta \vec{B} \times \vec{C}$
+\hl{I}
+$\vec{A} \times \vec{B} \times \vec{C} = (\vec{A} \cdot \vec{C})\vec{B} - (\vec{A} \cdot \vec{B})\vec{C}$
+\colorbox{Orange}{Simultaneous eigenfunctions}
+Two hermitian operators, A and B, can have simultaneous eigenfunctions if and only if they commute with each other 
+\hl{I}
+Proof: Let's first assume that $\hat{A}$ and $\hat{B}$ commute, and that we have found the eigenstates of $\hat{A}$ by: $\hat{A} \psi_a = a \psi_a$
+\hl{I}
+then we note: $\hat{A}(\hat{B} \psi_a) = \hat{B}\hat{A}\psi_a = a(\hat{B} \psi_a)$
+\hl{I}
+So $\hat{B}\psi_a$ must be the same as $\psi_a$ up to multiplicative constant: $\hat{B}\psi_a = b \psi_a$
+\hl{I}
+Next we assume that we have found the simultaneous eigenfunctions of $\hat{A}$ and $\hat{B}$ 
+\hl{I}
+$\hat{A}\psi_a = a\psi_a$ and $\hat{B}\psi_b$
+\hl{I}
+Then we note: $\comm{\hat{A}}{\hat{b}}\psi_{a}^{b} = (\hat{A}\hat{B} - \hat{B}\hat{A})\psi_{a}^{b} = (ab-ba)\psi_{a}^{b} = 0$
+\hl{I}
+So $\hat{A}$ and $\hat{B}$ commute: $\comm{\hat{A}}{\hat{B}}  = 0$
+\hl{I}
+This is true of any state which can be expanded in the complete set $\psi \sum_{a,b}c_a^b \psi_a^b$ which implies $\comm{\hat{A}}{\hat{B}}\psi = \psi \sum_{a,b}c_a^b (\hat{A}\hat{B} - \hat{B}\hat{A})\psi_a^b = \psi \sum_{a,b}c_a^b * 0  =0$
+\hl{I}
+In quantum mechanics, we always seek the largest set of commuting Hermitian operators in a given problem 
+\colorbox{Orange}{Uncertainty principle: general derivation}
+Two operators, $\hat{A}$ and $\hat{B}$, are Hermitian, but may not commute with each other. What general constraint can be imposed on the product of their 'uncertainties', $\Delta A \cdot \Delta B $
+\hl{I}
+$\Delta A^2 = \expval{(\hat{A}- \expval{\hat{A}})^2 }{\psi }$ where $ \expval{\hat{A}} = \expval{\hat{A}}{\psi}$
+\hl{I}
+$\Delta B^2 = \expval{(\hat{B}- \expval{\hat{B}})^2 }{\psi }$ where $ \expval{\hat{B}} = \expval{\hat{B}}{\psi}$
+\hl{I}
+Consider ket $\ket{\zeta} = (\hat{A} - \expval{\hat{A}}) \ket{\psi} + i\lambda (\hat{B} - \expval{\hat{B}}) \ket{\psi}$ where $\lambda$ is a real number
+\hl{I}
+ ket $\bra{\zeta} = \bra{(\hat{A} - \expval{\hat{A}})\psi}  - i\lambda \bra{(\hat{B} - \expval{\hat{B}}) \psi}$
+ \hl{I}
+ $0 \leq \braket{\zeta}{\zeta} \equiv I(\lambda) \equiv \braket{(\hat{A} - \expval{\hat{A}})\psi}{(\hat{A} - \expval{\hat{A}})\psi} + \lambda^2 \braket{(\hat{B} - \expval{\hat{B}}) \psi}{(\hat{B} - \expval{\hat{B}}) \psi} + i\lambda \braket{(\hat{A} - \expval{\hat{A}})\psi}{(\hat{B} - \expval{\hat{B}}) \psi} - \braket{(\hat{B} - \expval{\hat{B}}) \psi}{(\hat{A} - \expval{\hat{A}})\psi} $
+ \hl{I}
+ $I(\lambda) = \expval{(\hat{A} - \expval{\hat{A}})^2}{\psi} + \lambda^2 \expval{(\hat{B} - \expval{\hat{B}})^2}{\psi} + i\lambda \expval{(\hat{A} - \expval{\hat{A}})(\hat{B} - \expval{\hat{B}}) - (\hat{B} - \expval{\hat{B}})(\hat{A} - \expval{\hat{A}})}{\psi}$ 
+ \hl{I}
+ $I(\lambda) = (\Delta A)^2 + \lambda^2 (\Delta B)^2 + \lambda \expval{\hat{F}}{\psi} \geq  0$ where $\hat{F} = i\comm{\hat{A}}{\hat{B}}$
+ \hl{I}
+ True for all $\lambda$, including the minimum $\lambda$ given by $0 = \frac{I(\lambda)}{d\lambda}$ leading to $\lambda_{min} = - \frac{\expval{\hat{F}}{\psi}}{2(\Delta B)^2}$
+ \hl{I}
+ $I(\lambda_{min}) \geq 0$ leads to $(\Delta A)^2 (\Delta B)^2 \geq \frac{\expval{\hat{F}}{\psi}^2}{4}$ or $\Delta A \Delta B \geq \frac{1}{2} \abs{\expval{\hat{F}}{\psi}}$
+ \hl{I}
+ $\Delta A \Delta B \geq \frac{1}{2} \abs{i \expval{\comm{\hat{A}}{\hat{B}}}}$
+ \hl{I}
+ There's a fundamental limit, imposed by quantum mechanics, on two observables whose corresponding Hermitian operators do not commute.
+\hl{I}
+What is the minimum uncertainty principle waveform
+$\hat{A} = \hat{p}$ and $\hat{B} = x$ so $\comm{\hat{p}}{x} = -\hbar$, so that $\Delta x \Delta p \geq \frac{\hbar}{2}$
+\hl{I}
+The minimum is saturated by $0= \ket{\zeta} \equiv (\hat{p} - \expval{\hat{p}})\ket{\psi} + i\lambda (\hat{x} - \expval{\hat{x}})\ket{\psi}$
+\hl{I}
+In position space $0 = \zeta(x) \equiv (-i\hbar \frac{d}{dx} - p_0) \psi(x) + i\lambda_{min}(x-x_0)\psi(x)$ where $\lambda_{min} = -\frac{\hbar}{2(\Delta x)^2}$
+\hl{I}
+Or $\frac{d \psi (x)}{dx} = (\frac{ip_0}{\hbar} - \frac{x-x_0}{2(\Delta x)^2})\psi(x)$ which has a simple solution 
+\hl{I}
+$\psi(x) \alpha e^{-(x-x_0)^2 / (2\Delta x)^2} e^{ip_0x/\hbar}$ a Gaussian waveform at postion $x_0$ and with momentum $p_0$ It is saturated by the ground state of the harmonic oscillator 
+
+\colorbox{Orange}{Time dependence in quantum physics}
+For stationary states: $\psi(x,t) = \psi_n (x) e^{-iE_n t / \hbar}$
+\hl{I}
+the expectation value of operators is independent of time
+$\expval{\hat{O}} = \int_{-\infty}^{\infty} \psi^{*}(x,t)\hat{O}\psi(x,t) dx = \int_{-\infty}^{\infty} \psi^{*}(x) e^{+ E_n t / \hbar} \hat{O}\psi_n(x) e^{- E_n t / \hbar}  dx $
+\hl{I}
+For a general state, $\psi(x,t) = \sum_{n}^{\infty} a_n \psi_n (x) e^{-iE_n t / \hbar}$
+\hl{I}
+the expectation value of operators is generally dependent on time
+\hl{I}
+$\expval{\hat{O}}_t = \int_{-\infty}^{\infty} \psi^{*}(x,t)\hat{O}\psi(x,t)dx$
+\hl{I}
+\colorbox{Orange}{Conservation laws in quantum physics}
+$\frac{d \expval{hat{O}_t}}{dt} = \frac{d}{dt}[\int_{-\infty}^{\infty} \psi^{*}(x,t)\hat{O}\psi(x,t)dx ] = \int_{-\infty}^{\infty} \psi^{*}(x,t) \frac{\partial \hat{O}}{\partial t} \psi(x,t)dx + [\int_{-\infty}^{\infty} [ \frac{\partial \psi^{*}}{\partial t} \hat{O} \psi +   \psi^* \hat{O}  \frac{\partial \psi}{\partial t} ] dx ] $
+\hl{I}
+$i\hbar \frac{\partial \psi}{\partial t} = \hat{H} \psi$ and $-i\hbar \frac{\partial \psi^*}{\partial t} = \hat{H} \psi^*$
+\hl{I}
+$\frac{d\expval{\hat{O}}_t}{dt} = \expval{\frac{\partial \hat{O}}{\partial t}}{\psi} + \frac{i}{\hbar}\mel{\hat{H} \psi}{\hat{O}}{\psi} - \frac{i}{\hbar}\mel{\psi}{\hat{O}}{\hat{H} \psi} = \expval{\frac{\partial \hat{O}}{\partial t}}{\psi} + \frac{i}{\hbar}(\expval{\hat{H}\hat{O}}{\psi} - \expval{\hat{O}\hat{H}}{\psi}) =  \expval{\frac{\partial \hat{O}}{\partial t}}{\psi} + \frac{i}{\hbar} \expval{\comm{\hat{H}}{\hat{O}}}{\psi}  $
+\hl{I}
+$\frac{d\expval{\hat{O}}_t}{dt} = \expval{\frac{\partial \hat{O}}{\partial t}} + \frac{i}{\hbar} \expval{\comm{\hat{H}}{\hat{O}}}$
+\hl{I}
+If the quantum operator $\hat{O}$ is not an explicit function of time, and it commutes with the Hamiltonian operator of the system, then the corresponding classical observable O is conserved in the average sense
+\colorbox{Orange}{Does it commute with the Hamiltonian}
+example 1: between  Hamiltonian and momentum
+$\comm{\hat{H}}{\hat{p}} = \comm{\frac{\hat{p}^2}{2m}+V(x)}{\hat{p}} = \comm{\frac{\hat{p}^2}{2m}}{\hat{p}} + \comm{V(x)}{\hat{p}} = - \frac{\hbar}{i}\frac{dV(x)}{dx}$
+\hl{I}
+$\frac{d\expval{\hat{p}_t}}{dt} = 0 + \frac{i}{\hbar}\expval{\comm{\hat{H}}{\hat{p}}}$
+\hl{I}
+$\frac{d\expval{\hat{p}}_t}{dt} = -\expval{\frac{dV(x)}{dx}} = \expval{F} $ (Ehrenfest's theorem)
+\hl{I}
+\colorbox{Orange}{Classical period and quantum revival time}
+What time scales are involved in the time evolution of a general state $\psi(x,t) = \sum_{n}^{\infty} a_n \psi_n (x) e^{-iE_n t / \hbar}$
+
+\colorbox{Cyan}{Chap13 Harmonic Oscillator by algebra 30 points}
+\colorbox{Orange}{Factoring differential equation}
+$\frac{d^2 \psi(x)}{dx^2} = -k^2 \psi (x)$
+\hl{I}
+$0 = (\frac{d^2}{dx^2}+k^2)\psi(x) = (\frac{d}{dx} + ik)(\frac{d}{dx} - ik)\psi(x) = (\frac{d}{dx} - ik)(\frac{d}{dx} + ik)\psi(x)$
+\hl{I}
+$(\frac{d}{dx} + ik)\psi(x) = 0 $ gives $\psi(x) = e^{-ikx}$
+\hl{I}
+$(\frac{d}{dx} - ik)\psi(x) = 0$ gives $\psi(x) = e^{+ikx}$
+\hl{I}
+$\frac{d^2 \psi(x)}{dx^2} = +k^2 \psi(x)$
+\hl{I}
+$0 = (\frac{d^2}{dx^2}-k^2)\psi(x) = (\frac{d}{dx} + k)(\frac{d}{dx} - k)\psi(x) = (\frac{d}{dx} - k)(\frac{d}{dx} + k)\psi(x)$
+\hl{I}
+$(\frac{d}{dx} + k)\psi(x) = 0 $ gives $\psi(x) = e^{-kx}$
+\hl{I}
+$(\frac{d}{dx} - k)\psi(x) = 0$ gives $\psi(x) = e^{+kx}$
+\colorbox{Orange}{Factoring the harmonic oscillator}
+The quantum Hamiltonian operator
+$\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2} m\omega^2 x^2$ can be written as $\hat{H} = \hbar \omega (\frac{m\omega}{2\hbar}x^2 + \frac{\hat{p}^2}{2m\hbar \omega})$ however $x$ and $\hat{p}$ do not commute
+\hl{I}
+Force the issue by introducing operators
+\hl{I}
+$\hat{A}_{\pm} \equiv x\sqrt{\frac{m\omega}{2\hbar}} \mp i \frac{\hat{p}}{\sqrt{2m\hbar \omega}} $
+\hl{I}
+It has the inverse $x=\sqrt{\frac{\hbar}{2m\omega}}(\hat{A}_+ + \hat{A}_-)$ and $\hat{p} =  i\sqrt{\frac{m\omega \hbar}{2}}(\hat{A}_+ - \hat{A}_-)$
+\hl{I}
+$\comm{\hat{A}_-}{\hat{A}_+} = \hat{A}_- \hat{A}_+ - \hat{A}_+ \hat{A}_- = 1$
+$\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2} m\omega^2 x^2 = \frac{1}{2m} (-\frac{m\omega \hbar}{2})(\hat{A}_+  - \hat{A}_-)^2 + \frac{m\omega^2}{2}(\frac{\hbar}{2m\omega})(\hat{A}_+  + \hat{A}_-)^2 = \frac{\hbar \omega}{2}(\hat{A}_+ \hat{A}_- + \hat{A}_-  \hat{A}_+) = \hbar \omega (\hat{A}_+ \hat{A}_- + \frac{1}{2}) = \hbar \omega (\hat{N} + \frac{1}{2}) $
+\hl{I}
+$\hat{N} \equiv \hat{A}_+  \hat{A}_-$ is called the number operator
+\hl{I}
+Or solving the eigenvalue problem for the number operator: $\hat{N}\ket{n} = n\ket{n}$
+Solving $\hat{H}\psi(x) = E\psi(x)$ becomes solving $\hbar \omega (\hat{N}+ \frac{1}{2})\ket{n} = E\ket{n}$
+
+\colorbox{Orange}{Factoring the harmonic oscillator: eigenvalues}
+$\hat{N}\ket{n_min} =  \hat{A}_+  \hat{A}_- \ket{n_min} = 0 = n_min \ket{n_min}$
+\hl{I}
+We can obtain the energy spectrum purely by algebra
+$\hat{N}\ket{n} = n\ket{n}$ with $n=0,1,2,...$ and $E_n = (n+\frac{1}{2})\hbar \omega$
+\hl{I}
+We just need to fin one eigenstate, because all other eigenstates can be produced by raising or lowering operators. The natural choice is the ground state $\ket{0}$
+\hl{I}
+$\hat{A}_{-} \ket{0} = 0$ in position space is $(x\sqrt{\frac{m\omega}{2\hbar}} + i\frac{\hat{p}}{\sqrt{2m\hbar \omega}})\psi_0(x) = 0$
+\hl{I}
+Or $\frac{d\psi_0 (x)}{dx} = -\frac{x}{\rho^2}\psi_0 (x)$ where $\rho = \sqrt{\frac{\hbar}{m\omega}}$
+\hl{I}
+So the normalized ground state is $\psi_0(x) = \frac{1}{\sqrt{\rho}\sqrt{\pi}}e^{-x^2 / (2\rho^2)}$
+\hl{I}
+Excited states can be obtained by repeated applying the raising operator on the ground state
+$\hat{A}_+ \ket{n} = c_n \ket{n+1}$ or $\psi_{n+1}(x) = \frac{1}{c_n}(x\sqrt{\frac{m\omega}{2\hbar}} + i \frac{\hat{p}}{\sqrt{sm\hbar \omega}})\psi_n (x)$
+But still don't know coefficients $c_n$
+
+\colorbox{Orange}{Factoring the harmonic oscillator: coefficients of raising and lowering operations}
+$\hat{A}_x \ket{n} = c_n \ket{n+1}$
+\hl{I}
+$\hat{A}_- \ket{n} = b_n \ket{n-1}$
+\hl{I}
+$\bra{n} \hat{A}_- = \bra{n+1} c_n$
+\hl{I}
+$\bra{n} \hat{A}_+ = \bra{n-1} b_n$
+\hl{I}
+$\expval{\hat{A}_- \hat{A}_+}{n} = \expval{c_n^2}{n+1}$
+\hl{I}
+$\expval{\hat{N} + 1}{n} = c_n^2\braket{n+1}$
+\hl{I}
+$(n+1)\braket{n} = c_n^2\braket{n=1}$
+\hl{I} also
+$\expval{\hat{A}_+ \hat{A}_-}{n} = \expval{b_n^2}{n-1}$
+\hl{I}
+$n\braket{n} = b_n^2 \braket{n-1}$
+\hl{I}
+For normalized states $\braket{n} = 1$ and $\braket{n+1} = 1$ so $n+1 = c_n^2$
+\hl{I}
+$\hat{A}_+ \ket{n} = \sqrt{n+1} \ket{n+1}$
+\hl{I}
+$\hat{A}_- \ket{n} = \sqrt{n}\ket{n-1}$
+\hl{I}
+\colorbox{Orange}{Factoring the harmonic oscillator: eigenstates continued}
+$\ket{n} = \frac{1}{\sqrt{n!}}(\hat{A}_+)^n \ket{0}$
+
+\colorbox{Orange}{Factoring the harmonic oscillator: expectation values}
+$x = \sqrt{\frac{\hbar}{2m\omega}}(\hat{A}_+ + \hat{A}_-)$
+\hl{I}
+$\hat{p} = i\sqrt{\frac{m\omega \hbar}{2}} (\hat{A}_+ - \hat{A}_-)$
+
+\colorbox{Cyan}{Chap 15 and16 Schrodinger equation in 2D and 3D 30 points}
+\colorbox{Orange}{Transition from 1D to 3D (Cartesian coordinates, position space)}
+Position$\vec{r} = (x,y,z)$
+\hl{I}
+Momentum operator $\hat{\vec{p}} = (\hat{p}_x, \hat{p}_y, \hat{p}_z) = \frac{\hbar}{i}\vec{\nabla}$
+\hl{I}
+Kinetic energy operator $\hat{T} = \frac{\hat{p}_x ^2+ \hat{p}_y^2 + \hat{p}_z^2}{2m} = -\frac{\hbar^2}{2m}nabla^2$
+\hl{I}
+Potential energy $V(x,y,z,t)$ or $V(\vec{r},t)$
+\hl{I}
+Hamiltonian operator $\hat{H} = \hat{T} + V$ vs. Energy operator$ \hat{E} = i\hbar frac{\partial}{\partial t}$
+\hl{I}
+Time Dependent Schrodinger Equation $\hat{H}\psi(x,y,z,t) = \hat{E}\psi(x,y,z,t)$ or $(-\frac{\hbar^2}{2m})\nabla^2 + V(\vec{r})\psi(\vec{r},t) = i\hbar \frac{\partial \psi(\vec{r}, t)}{\partial t}$
+\hl{I}
+Time independent Schrodinger Equation $\hat{H}\psi(x,y,z) = \hat{E}\psi(x,y,z)$ or $(-\frac{\hbar^2}{2m})\nabla^2 + V(\vec{r})\psi(\vec{r}) = E \psi(\vec{r})$
+\hl{I}
+Normalization $\int_{-\infty}^{\infty} dx \int_{-\infty}^{\infty} dy \int_{-\infty}^{\infty} dz \abs{\psi(x,y,z,t)}^2 = 1$ or $\int \abs{\psi(\vec{r},t)}^2 dr^3 = 1$
+\hl{I}
+Expectation $\expval{\hat{O}(x,y,z,\hat{p}_x,\hat{p}_y,\hat{p}_z,t)} = \int_{-\infty}^{\infty} dx \int_{-\infty}^{\infty} dy \int_{-\infty}^{\infty} dz \psi^*(x,y,z,t) \hat{O}(x,y,z,\hat{p}_x,\hat{p}_y,\hat{p}_z,t)\psi(x,y,z,t) $ or
+\hl{I}
+$\expval {\hat{O}(\vec{r},\hat{\vec{p}},t)} = \int \psi^* (\vec{r},t)\hat{O}(\vec{r},\hat{\vec{p}},t) \psi(\vec{r},t) dr^3$
+\hl{I}
+Gradient operator $\vec{\nabla} = (\frac{\partial}{\partial x} , \frac{\partial}{\partial y}, \frac{\partial}{\partial z})$
+\hl{I}
+Laplace operator $\nabla^2 =(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}) $
+\colorbox{Orange}{Separation of variables (Cartesian coordinates)}
+$[-\frac{\hbar^2}{2m}(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}) + V(x,y,z)] \psi(x,y,z) = E\psi(x,y,z)$
+\hl{I}
+if the potential is separable, $V(x,y,z) = V_1(x) + V_2(y)+V_3(z)$
+\hl{I}
+Try solution $\psi(x,y,z) = \psi_1(x) \psi_2(y) \psi_3(z)$
+\hl{I}
+$(-\frac{\hbar^2}{2m}\frac{1}{\psi_1(x)} \frac{\partial^2 \psi_1(x)}{\partial x^2} + V_1(x)) +  (-\frac{\hbar^2}{2m}\frac{1}{\psi_2(y)} \frac{\partial^2 \psi_2(y)}{\partial y^2} + V_2(y)) + (-\frac{\hbar^2}{2m}\frac{1}{\psi_3(z)} \frac{\partial^2 \psi_3(z)}{\partial z^2} + V_3(z)) = E$
+\hl{I}
+to be true $E_1 + E_2 + E_3 = E$
+\hl{I}
+\colorbox{Orange}{Example: particle in a rigid 3D box}
+Infinite potential well $V(x,y,z) = 0$ for$0<x.y.z<L$ and $\infty$ everywhere else
+\hl{I}
+$(-\frac{\hbar^2}{2m} \frac{\partial^2 \psi_1(x)}{\partial x^2} = E_1 \psi_1(x) $ and $\psi_{n_{x}}(x) = \sqrt{\frac{2}{L}}\sin(\frac{n_x \pi x}{L})$ and $E_1 = n_x^2\frac{\pi^2 \hbar^2}{2mL^2}$ and $n_x =1,2,3,...$
+\hl{I} replace x and 1 with y and 2 and z and 3
+\hl{I}
+Quantized eigenenergies: $E_{n_x n_y n_z} = E_1 + E_2 + E_3 = (n_x^2 + n_y^2 + n_z^2)\frac{\pi^2 \hbar^2}{2mL^2}$ where $n_x, n_y, n_z = 1,2,3...$
+\hl{I}
+Orthonormal eigenfunctions: $\psi_{n_x n_y n_z}(x,y,z) = \sqrt{\frac{8}{L^3}} \sin(\frac{n_x \pi x}{L}) \sin(\frac{n_y \pi y}{L}) \sin(\frac{n_z \pi z}{L})$ 
+\hl{I}
+A new features arises where one wavefunction can have the same energy. For example $(n_x, n_y, n_z) = (1,1,2), (1,2,1), (2,1,1)$ this is called degeneracy
+\colorbox{Orange}{Exchange symmetry}
+Take 2D square box as example:
+$E_{n_{x} n_{y}}=(n_x^2 + n_y^2)\frac{\pi^2 \hbar^2}{2m L^2}$ where $n_x , n_y = 1,2,3...$
+\hl{I}
+$\psi_{n_x n_y}(x,y) = \frac{2}{L} \sin(\frac{n_x \pi x}{L}) \sin(\frac{n_y \pi y}{L})$
+Observation: nothing changes if we switch x and y in the wavefunction. This is called exchange symmetry. Can formalize by an operator: $\hat{E}_{(x,y)} \psi(x,y) = \psi(y,x)$
+
+
+\colorbox{Orange}{Eigenstates in 3D box as a basis of expansion}
+Quantized eigenenergies: $E_{n_x n_y n_z} = E_1 + E_2 + E_3 = (n_x^2 + n_y^2 + n_z^2)\frac{\pi^2 \hbar^2}{2mL^2}$ where $n_x, n_y, n_z = 1,2,3...$
+\hl{I}
+Orthonormal eigenfunctions: $\psi_{n_x n_y n_z}(x,y,z) = \sqrt{\frac{8}{L^3}} \sin(\frac{n_x \pi x}{L}) \sin(\frac{n_y \pi y}{L}) \sin(\frac{n_z \pi z}{L})$ 
+\hl{I}
+Orthonormal: $\braket{\psi_{n_x n_y n_z}}{\psi_{m_x m_y m_z}}  = \delta_{n_x , m_x}\delta_{n_y , m_y}\delta_{n_z , m_z}$
+\hl{I}
+They form a complete basis 
+\hl{I}
+$\psi(x,y,z,0) = \sum_{n_x ,n_y, n_z = 1}^{\infty} a_{n_x n_y n_z} \psi_{n_x n_y n_z}(x,y,z)$
+\hl{I}
+$a_{n+x n_y n_z} = \int_{-\infty}^{\infty} dx \int_{-\infty}^{\infty} dy \int_{-\infty}^{\infty} dz \psi(x,y,z,0) \psi_{n_x n_y n_z}(x,y,z)$
+\hl{I}
+$\psi (x,y,z,t) = \sum_{n_x ,n_y, n_z = 1}^{\infty} a_{n_x n_y n_z} \psi_{n_x n_y n_z}(x,y,z)e^{-iE_{n_x n-y n_z t / \hbar}}$
+\hl{I}
+$\expval{E} = \expval{\hat{E}}{\psi(x,y,z,t)} = \sum_{n_x ,n_y, n_z = 1}^{\infty} \abs{ a_{n_x n_y n_z}}^2 E_{n_x n_y n_z} $
+\hl{I}
+The coefficient squared $ \abs{ a_{n_x n_y n_z}}^2$ is the probability for getting $E_{n_x n_y n_z}$ if a measurement of the energy is made.
+\colorbox{Orange}{Transition from 1D to 3D (spherical coordinates, position space)}
+Position $\vec{r} = (r,\theta,\phi)$
+\hl{I}
+Momentum operator $\hat{\vec{p}} = \frac{\hbar}{i}\vec{\nabla}$
+\hl{I}
+Kinetic energy operator $\hat{T} = -\frac{\hbar^2}{2m}\nabla^2$
+\hl{I}
+Potential energy $V(r,\theta,\phi,t)$ or $V(\vec{R},t)$
+\hl{I}
+Hamiltonian operator $\hat{H} = \hat{T} + V$ vs. Energy operator$ \hat{E} = i\hbar frac{\partial}{\partial t}$
+\hl{I}
+Time Dependent Schrodinger Equation $\hat{H}\psi(r,\theta,\phi,t) = \hat{E}\psi(r,\theta,\phi,t)$ or $(-\frac{\hbar^2}{2m})\nabla^2 + V(\vec{r})\psi(\vec{r},t) = i\hbar \frac{\partial \psi(\vec{r}, t)}{\partial t}$
+\hl{I}
+Time independent Schrodinger Equation $\hat{H}\psi(r,\theta,\phi) = E\psi(r,\theta,\phi)$ or $(-\frac{\hbar^2}{2m})\nabla^2 + V(\vec{r})\psi(\vec{r}) = E \psi(\vec{r})$
+\hl{I}
+Normalization $\int_{0}^{\infty} r^2 dr \int_{0}^{\pi} \sin d\theta \int_{0}^{2\pi} d\phi \abs{\psi(r,\theta,\phi,t)}^2 = 1$ 
+\hl{I}
+Expectation $\expval{\hat{O}} = \int_{0}^{\infty} r^2 dr \int_{0}^{\pi} \sin d\theta \int_{0}^{2\pi} d\phi \psi^*(r,\theta,\phi, t) \hat{O}\psi(r,\theta,\phi, t) $
+
+\colorbox{Orange}{Angular momentum operator}
+$\hat{\vec{L}} = \vec{r} \times \hat{\vec{p}}$
+\hl{I}
+$\hat{L}_x = y\hat{p}_z - z\hat{p}_y = \frac{\hbar}{i}(-\sin \phi \frac{\partial}{\partial \theta} - \cot \theta \cos \phi \frac{\partial}{\partial \phi})$
+\hl{I}
+$\hat{L}_y = z\hat{p}_x - x\hat{p}_z = \frac{\hbar}{i}(\cos \phi \frac{\partial}{\partial \theta} - \cot \theta \sin \phi \frac{\partial}{\partial \phi})$
+\hl{I}
+$\hat{L}_z = x\hat{p}_y - y\hat{p}_x = \frac{\hbar}{i}  \frac{\partial}{\partial \theta} $
+\hl{I}
+$\hat{L}^2 = \hat{L}_x^2 + \hat{L}_y^2 + \hat{L}_z^2 = -\hbar^2(\frac{\partial^2}{\partial \theta^2} + \cot \frac{\partial}{\partial \phi} + \frac{1}{\sin^2 \theta} \frac{\partial^2}{\partial \theta^2})$
+\hl{I}
+Angular momentum operators only depend on angular variables in spherical coordinates 
+\colorbox{Orange}{Eigenstates of angular momentum}
+\colorbox{Orange}{Parity of spherical harmonics}
+\colorbox{Orange}{Angular momentum by operator algebra}
+\colorbox{Orange}{Eigenstates of angular momentum by operator algebra}
+\colorbox{Orange}{Spin}
+\colorbox{Orange}{Spin 1/2}
+\colorbox{Orange}{Addition of angular momenta}
+\colorbox{Orange}{Coupling of angular momenta}
+\colorbox{Orange}{Example: adding the spins of two electrons}
+
+
+
+
+
+
+
+\colorbox{YellowGreen}{Final}
+
+\colorbox{Cyan}{Chap 17 The Hydrogen atom}
+\colorbox{Cyan}{Identical particles}
+\colorbox{Cyan}{Perturbation theory}
+
+\end{document}  
+
